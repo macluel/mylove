@@ -6,13 +6,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EU TE AMO</title>
+    <title>Eu te amo</title>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             color: #FFFBD4;
             text-align: center;
             background-color: #090614;
+        }
+
+        .slideshow-container {
+            width: 350px; /* Fixed width */
+            height: 500px; /* Fixed height */
+            margin: auto;
+            text-align: center;
+            position: relative; /* Keep images in place */
+            overflow: hidden; /* Prevent layout shifting */
+        }
+
+        .slides {
+            width: 100%; /* Make images fit the container */
+            height: 100%; /* Maintain fixed height */
+            object-fit: cover; /* Prevents distortion, fills the container */
+            position: absolute; /* Stack images on top of each other */
+        }
+
+        .timer {
+            font-size: 24px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -35,10 +56,19 @@
         <img class="slides" src="assets/images/IMG13.jpg" alt="Slide 13">
         <img class="slides" src="assets/images/IMG14.jpg" alt="Slide 14">
         <img class="slides" src="assets/images/IMG15.jpg" alt="Slide 15">
-        <img class="slides" src="assets/images/IMG16.jpg" alt="Slide 16">    
-        
+        <img class="slides" src="assets/images/IMG16.jpg" alt="Slide 16">
     </div>
-    
+
+    <h1>Eu te amo</h1>
+
+    <iframe id="spotifyIframe" style="border-radius:12px" 
+        src="https://open.spotify.com/embed/track/43BCxznTSBLcXzu4lJ8KW5?utm_source=generator&theme=0&start=7"
+        width="100%" height="152" frameBorder="0" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
+
+    <div id="timer" class="timer"></div> <!-- The timer section -->
+
     <script>
         let slideIndex = 0;
         function showSlides() {
@@ -49,60 +79,59 @@
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1; }
             slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 2000); // Change image every 10 seconds
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
         }
-        function shuffleSlides() {
-    let container = document.querySelector(".slideshow-container");
-    let slides = Array.from(container.children); // Convert to array
-    
-    // Fisher-Yates shuffle
-    for (let i = slides.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1)); // Random index
-        [slides[i], slides[j]] = [slides[j], slides[i]]; // Swap elements
-    }
 
-    // Re-add shuffled slides back to the container
-    slides.forEach(slide => container.appendChild(slide));
-}
+        function shuffleSlides() {
+            let container = document.querySelector(".slideshow-container");
+            let slides = Array.from(container.children); // Convert to array
+
+            // Fisher-Yates shuffle
+            for (let i = slides.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1)); // Random index
+                [slides[i], slides[j]] = [slides[j], slides[i]]; // Swap elements
+            }
+
+            // Re-add shuffled slides back to the container
+            slides.forEach(slide => container.appendChild(slide));
+        }
+
         shuffleSlides();
         showSlides();
+
+        // Function to update the timer
+        function updateTimer() {
+            // Set the start date (01/19/2024)
+            var startDate = new Date("January 19, 2024 00:00:00").getTime();
+
+            // Get the current date and time
+            var currentDate = new Date().getTime();
+
+            // Calculate the time difference in milliseconds
+            var timeDiff = currentDate - startDate;
+
+            // Calculate the time in days, hours, minutes, and seconds
+            var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("timer").innerHTML = "Juntos desde: " + days + " dias " + hours + " horas " + minutes + " minutos " + seconds + " segundos";
+        }
+
+        // Update the timer every 1000 milliseconds (1 second)
+        setInterval(updateTimer, 1000);
+
+        // Call the function once to show the time immediately
+        updateTimer();
+
+        // Autoplay Spotify iframe on page load
+        window.onload = function() {
+            var iframe = document.getElementById('spotifyIframe');
+            iframe.src += "&autoplay=1";  // Add autoplay when the page loads
+        }
     </script>
-    
-    <style>
-    .slideshow-container {
-    width: 350px; /* Fixed width */
-    height: 500px; /* Fixed height */
-    margin: auto;
-    text-align: center;
-    position: relative; /* Keep images in place */
-    overflow: hidden; /* Prevent layout shifting */
-}
-
-.slides {
-    width: 100%; /* Make images fit the container */
-    height: 100%; /* Maintain fixed height */
-    object-fit: cover; /* Prevents distortion, fills the container */
-    position: absolute; /* Stack images on top of each other */
-}
-
-    </style>
-    
-    <h1>Eu te amo</h1>
-
-    <iframe id="spotifyIframe" style="border-radius:12px" 
-    src="https://open.spotify.com/embed/track/43BCxznTSBLcXzu4lJ8KW5?utm_source=generator&theme=0&start=7"
-    width="100%" height="152" frameBorder="0" 
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy"></iframe>
-
-<script>
-    window.onload = function() {
-        var iframe = document.getElementById('spotifyIframe');
-        iframe.src += "&autoplay=1";  // Add autoplay when the page loads
-    }
-</script>
-
-
 
 </body>
 </html>
