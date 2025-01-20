@@ -89,11 +89,19 @@
     
     <h1>Eu te amo</h1>
 
-    <iframe style="border-radius:12px" 
-    src="https://open.spotify.com/embed/track/43BCxznTSBLcXzu4lJ8KW5?utm_source=generator&theme=0&autoplay=true&start=7"
+    <iframe id="spotifyIframe" style="border-radius:12px" 
+    src="https://open.spotify.com/embed/track/43BCxznTSBLcXzu4lJ8KW5?utm_source=generator&theme=0&start=7"
     width="100%" height="152" frameBorder="0" 
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
     loading="lazy"></iframe>
+
+<script>
+    window.onload = function() {
+        var iframe = document.getElementById('spotifyIframe');
+        iframe.src += "&autoplay=1";  // Add autoplay when the page loads
+    }
+</script>
+
 
 
 </body>
