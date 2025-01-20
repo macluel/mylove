@@ -19,16 +19,15 @@
 
         .slideshow-container {
             width: 100%;
-            height: auto;
+            height: 300px;
             margin: auto;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
         .slides {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
             position: absolute;
             opacity: 0;
@@ -36,22 +35,22 @@
         }
 
         .timer {
-            font-size: 30px; /* Smaller, minimalist timer font */
+            font-size: 30px; /* Timer font */
             color: #FFFBD4;
             background-color: transparent;
             padding: 10px;
             border-radius: 5px;
             display: inline-block;
             cursor: pointer;
-            transition: transform 0.2s ease-in-out; /* Added animation */
+            transition: transform 0.2s ease-in-out;
         }
 
         .timer:hover {
-            transform: scale(1.1); /* Slight scale effect on hover */
+            transform: scale(1.1); /* Hover effect */
         }
 
         .timer-title {
-            font-size: 20px; /* Minimalistic title size */
+            font-size: 20px; /* Title size */
             color: #F0F0F0;
             margin-top: 10px;
             font-weight: bold;
@@ -121,12 +120,12 @@
     <!-- Timer Section -->
     <div id="timer-container">
         <div id="timer-title" class="timer-title">Quando começamos a namorar…</div>
-        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- The timer section -->
+        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- Timer -->
     </div>
 
     <script>
         let slideIndex = 0;
-        let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
+        let currentTimer = 0;
 
         // Timer data in the new order
         const timerData = [
@@ -144,19 +143,19 @@
             }
         ];
 
-        // Function to change slides
+        // Show slides function
         function showSlides() {
             let slides = document.getElementsByClassName("slides");
             for (let i = 0; i < slides.length; i++) {
-                slides[i].style.opacity = "0"; // Initially hide all images
+                slides[i].style.opacity = "0"; 
             }
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].style.opacity = "1"; // Show current slide
-            setTimeout(showSlides, 2000); // Change image every 2 seconds
+            slides[slideIndex - 1].style.opacity = "1"; 
+            setTimeout(showSlides, 3000); 
         }
 
-        // Function to update the timer
+        // Update the timer
         function updateTimer(timerIndex) {
             var startDate = new Date(timerData[timerIndex].startDate).getTime();
             var currentDate = new Date().getTime();
@@ -171,17 +170,15 @@
             document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
         }
 
-        // Function to cycle through the timers
+        // Cycle through the timers
         function cycleTimer() {
             currentTimer = (currentTimer + 1) % timerData.length;
             updateTimer(currentTimer);
         }
 
-        // Initial setup
+        // Initialize everything
         showSlides();
-        updateTimer(0); // Initial timer for "Começamos a namorar"
-
-        // Update timer every second
+        updateTimer(0);
         setInterval(() => updateTimer(currentTimer), 1000);
     </script>
 
