@@ -94,12 +94,30 @@
         loading="lazy"></iframe>
 
     <!-- Timer Section -->
-    <div class="timer-title">Juntos desde:</div>
-    <div id="timer" class="timer" onclick="cycleTimer()">Começamos a conversar</div> <!-- The timer section -->
+    <div id="timer-container">
+        <div id="timer-title" class="timer-title">Começamos a namorar</div>
+        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- The timer section -->
+    </div>
 
     <script>
         let slideIndex = 0;
-        let currentTimer = 0; // 0 - Começamos a conversar, 1 - Nos conhecemos, 2 - Começamos a namorar
+        let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
+
+        // Timer data in the new order
+        const timerData = [
+            {
+                title: "Começamos a namorar",
+                startDate: "January 19, 2025 00:00:00"
+            },
+            {
+                title: "Começamos a conversar",
+                startDate: "December 6, 2024 00:00:00"
+            },
+            {
+                title: "Nos conhecemos",
+                startDate: "December 13, 2024 00:00:00"
+            }
+        ];
 
         // Function to change slides
         function showSlides() {
@@ -114,8 +132,8 @@
         }
 
         // Function to update the timer
-        function updateTimer(date) {
-            var startDate = new Date(date).getTime();
+        function updateTimer(timerIndex) {
+            var startDate = new Date(timerData[timerIndex].startDate).getTime();
             var currentDate = new Date().getTime();
             var timeDiff = currentDate - startDate;
 
@@ -125,30 +143,18 @@
             var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
             document.getElementById("timer").innerHTML = `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
+            document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
         }
 
         // Function to cycle through the timers
         function cycleTimer() {
-            const timerDates = [
-                "December 6, 2024 00:00:00", // Começamos a conversar
-                "December 13, 2024 00:00:00", // Nos conhecemos
-                "January 19, 2025 00:00:00"  // Começamos a namorar
-            ];
-
-            const timerTitles = [
-                "Começamos a conversar",
-                "Nos conhecemos",
-                "Começamos a namorar"
-            ];
-
-            currentTimer = (currentTimer + 1) % timerDates.length;
-            updateTimer(timerDates[currentTimer]);
-            document.getElementById("timer").innerHTML = timerTitles[currentTimer];
+            currentTimer = (currentTimer + 1) % timerData.length;
+            updateTimer(currentTimer);
         }
 
         // Initial setup
         showSlides();
-        updateTimer("December 6, 2024 00:00:00"); // Initial timer for "Começamos a conversar"
+        updateTimer(0); // Initial timer for "Começamos a namorar"
     </script>
 
 </body>
