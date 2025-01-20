@@ -31,35 +31,35 @@
             position: absolute; /* Stack images on top of each other */
         }
 
-        /* Styling the timer */
         .timer {
             font-size: 24px;
             margin-top: 20px;
-            color: #FFFBD4;
-            background-color: #2D2D2D;
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-block;
+            cursor: pointer; /* Make it clickable */
         }
 
-        /* Styling the "Juntos desde" title */
         .timer-title {
             font-size: 28px;
             font-weight: bold;
-            color: #FFFBD4;
+            color: #F0F0F0; /* Soft white */
             margin-top: 10px;
+            cursor: pointer; /* Make it clickable */
         }
 
-        /* Headings styling */
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 10px;
+        .easter-egg {
+            display: none; /* Initially hide easter egg messages */
+            font-size: 18px;
+            color: #F0F0F0;
+            margin-top: 10px;
+            font-style: italic;
         }
 
-        /* Adding some space between the headings */
-        h1 {
-            margin-top: 20px;
+        /* Hidden Timer Styles */
+        #hiddenTimer {
+            font-size: 12px;
+            color: #F0F0F0;
+            margin-top: 10px;
+            display: none; /* Hidden initially */
         }
-
     </style>
 </head>
 <body>
@@ -84,12 +84,13 @@
         <img class="slides" src="assets/images/IMG15.jpg" alt="Slide 15">
         <img class="slides" src="assets/images/IMG16.jpg" alt="Slide 16">
     </div>
-    
-    <h1>EU TE AMO</h1>
-    <h2>EU TE AMO</h2>
-    <h3>EU TE AMO</h3>
-    <h4>EU TE AMO</h4>
-    <h5>EU TE AMO</h6>
+
+    <h1 id="headerOne">EU TE AMO</h1>
+    <h2 id="headerTwo">EU TE AMO</h2>
+    <h3 id="headerThree">EU TE AMO</h3>
+    <h4 id="headerFour">EU TE AMO</h4>
+    <h5 id="headerFive">EU TE AMO</h5>
+    <h6 id="headerSix">EU TE AMO</h6>
 
     <iframe id="spotifyIframe" style="border-radius:12px" 
         src="https://open.spotify.com/embed/track/43BCxznTSBLcXzu4lJ8KW5?utm_source=generator&theme=0&start=7"
@@ -97,9 +98,14 @@
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"></iframe>
 
-    <!-- Timer Section -->
-    <div class="timer-title">Juntos desde:</div>
     <div id="timer" class="timer"></div> <!-- The timer section -->
+    
+    <!-- Hidden easter egg messages -->
+    <div id="startTalking" class="easter-egg">Começamos a conversar em: 6 de Dezembro de 2024</div>
+    <div id="firstMet" class="easter-egg">Nos conhecemos em: 13 de Dezembro de 2024</div>
+
+    <!-- Hidden timer that will appear when one of the "Eu te amo" headers is clicked -->
+    <div id="hiddenTimer">Tempo desde o clique: 0 segundos</div>
 
     <script>
         let slideIndex = 0;
@@ -149,7 +155,7 @@
             var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
             // Display the result
-            document.getElementById("timer").innerHTML = days + " dias " + hours + " horas " + minutes + " minutos " + seconds + " segundos";
+            document.getElementById("timer").innerHTML = "Juntos desde: " + days + " dias " + hours + " horas " + minutes + " minutos " + seconds + " segundos";
         }
 
         // Update the timer every 1000 milliseconds (1 second)
@@ -163,6 +169,27 @@
             var iframe = document.getElementById('spotifyIframe');
             iframe.src += "&autoplay=1";  // Add autoplay when the page loads
         }
+
+        // Show the easter egg messages when the timer title is clicked
+        document.getElementById("timer").onclick = function() {
+            document.getElementById("startTalking").style.display = "block";
+            document.getElementById("firstMet").style.display = "block";
+        }
+
+        // Hidden timer logic when any "Eu te amo" header is clicked
+        let headerElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        headerElements.forEach(header => {
+            header.addEventListener('click', function() {
+                document.getElementById("hiddenTimer").style.display = "block"; // Show the hidden timer
+                let startTime = Date.now(); // Get the time when clicked
+
+                // Update the hidden timer every second
+                setInterval(function() {
+                    let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+                    document.getElementById("hiddenTimer").innerHTML = "Tempo desde o clique: " + elapsedTime + " segundos";
+                }, 1000);
+            });
+        });
     </script>
 
 </body>
