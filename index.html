@@ -13,13 +13,13 @@
             color: #FFFBD4;
             text-align: center;
             background-color: #090614;
-            margin: 0;
-            padding: 0;
         }
 
         .slideshow-container {
-            width: 100%;
-            height: 500px;
+            width: 100%;  /* Make it take up the full width */
+            height: 100%; /* Allow height to adjust dynamically */
+            max-width: 350px; /* Optional: Prevent it from becoming too large */
+            aspect-ratio: 7/10; /* Maintain a ratio similar to your images */
             margin: auto;
             text-align: center;
             position: relative;
@@ -32,30 +32,25 @@
             object-fit: cover;
             position: absolute;
             transition: opacity 1s ease-in-out;
-            opacity: 0; /* Default state */
-        }
-
-        .active {
-            opacity: 1; /* Visible when active */
         }
 
         .timer {
-            font-size: 30px;
+            font-size: 30px; /* Smaller, minimalist timer font */
             color: #FFFBD4;
             background-color: transparent;
             padding: 10px;
             border-radius: 5px;
             display: inline-block;
             cursor: pointer;
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out; /* Added animation */
         }
 
         .timer:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Slight scale effect on hover */
         }
 
         .timer-title {
-            font-size: 20px;
+            font-size: 20px; /* Minimalistic title size */
             color: #F0F0F0;
             margin-top: 10px;
             font-weight: bold;
@@ -72,15 +67,15 @@
         /* Responsive adjustments */
         @media (max-width: 600px) {
             .slideshow-container {
+                width: 90%;
                 height: auto;
-                padding-bottom: 50%; /* Maintain aspect ratio */
             }
             .timer {
-                font-size: 24px;
+                font-size: 24px; /* Adjust for mobile */
                 padding: 8px;
             }
             .timer-title {
-                font-size: 18px;
+                font-size: 18px; /* Adjust title for mobile */
             }
             h1 {
                 font-size: 24px;
@@ -97,7 +92,7 @@
     <h3>Para a dona do meu coração…</h3>
 
     <div class="slideshow-container">
-        <img class="slides active" src="assets/images/IMG1.jpg" alt="Slide 1">
+        <img class="slides" src="assets/images/IMG1.jpg" alt="Slide 1">
         <img class="slides" src="assets/images/IMG3.jpg" alt="Slide 3">
         <img class="slides" src="assets/images/IMG4.jpg" alt="Slide 4">
         <img class="slides" src="assets/images/IMG5.jpg" alt="Slide 5">
@@ -156,11 +151,11 @@
         function showSlides() {
             let slides = document.getElementsByClassName("slides");
             for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove('active');
+                slides[i].style.display = "none";
             }
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].classList.add('active');
+            slides[slideIndex - 1].style.display = "block";
             setTimeout(showSlides, 2000); // Change image every 2 seconds
         }
 
