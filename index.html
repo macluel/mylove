@@ -19,8 +19,9 @@
 
         .slideshow-container {
             width: 100%;
-            height: 300px;
+            height: 500px;
             margin: auto;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -30,12 +31,16 @@
             height: 100%;
             object-fit: cover;
             position: absolute;
-            opacity: 0;
             transition: opacity 1s ease-in-out;
+            opacity: 0; /* Default state */
+        }
+
+        .active {
+            opacity: 1; /* Visible when active */
         }
 
         .timer {
-            font-size: 30px; /* Timer font */
+            font-size: 30px;
             color: #FFFBD4;
             background-color: transparent;
             padding: 10px;
@@ -46,11 +51,11 @@
         }
 
         .timer:hover {
-            transform: scale(1.1); /* Hover effect */
+            transform: scale(1.1);
         }
 
         .timer-title {
-            font-size: 20px; /* Title size */
+            font-size: 20px;
             color: #F0F0F0;
             margin-top: 10px;
             font-weight: bold;
@@ -66,11 +71,9 @@
 
         /* Responsive adjustments */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 24px;
-            }
-            h2 {
-                font-size: 20px;
+            .slideshow-container {
+                height: auto;
+                padding-bottom: 50%; /* Maintain aspect ratio */
             }
             .timer {
                 font-size: 24px;
@@ -78,6 +81,12 @@
             }
             .timer-title {
                 font-size: 18px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
             }
         }
     </style>
@@ -88,7 +97,7 @@
     <h3>Para a dona do meu coração…</h3>
 
     <div class="slideshow-container">
-        <img class="slides" src="assets/images/IMG1.jpg" alt="Slide 1">
+        <img class="slides active" src="assets/images/IMG1.jpg" alt="Slide 1">
         <img class="slides" src="assets/images/IMG3.jpg" alt="Slide 3">
         <img class="slides" src="assets/images/IMG4.jpg" alt="Slide 4">
         <img class="slides" src="assets/images/IMG5.jpg" alt="Slide 5">
@@ -120,12 +129,12 @@
     <!-- Timer Section -->
     <div id="timer-container">
         <div id="timer-title" class="timer-title">Quando começamos a namorar…</div>
-        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- Timer -->
+        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- The timer section -->
     </div>
 
     <script>
         let slideIndex = 0;
-        let currentTimer = 0;
+        let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
 
         // Timer data in the new order
         const timerData = [
@@ -143,19 +152,19 @@
             }
         ];
 
-        // Show slides function
+        // Function to change slides
         function showSlides() {
             let slides = document.getElementsByClassName("slides");
             for (let i = 0; i < slides.length; i++) {
-                slides[i].style.opacity = "0"; 
+                slides[i].classList.remove('active');
             }
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].style.opacity = "1"; 
-            setTimeout(showSlides, 3000); 
+            slides[slideIndex - 1].classList.add('active');
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
         }
 
-        // Update the timer
+        // Function to update the timer
         function updateTimer(timerIndex) {
             var startDate = new Date(timerData[timerIndex].startDate).getTime();
             var currentDate = new Date().getTime();
@@ -170,15 +179,17 @@
             document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
         }
 
-        // Cycle through the timers
+        // Function to cycle through the timers
         function cycleTimer() {
             currentTimer = (currentTimer + 1) % timerData.length;
             updateTimer(currentTimer);
         }
 
-        // Initialize everything
+        // Initial setup
         showSlides();
-        updateTimer(0);
+        updateTimer(0); // Initial timer for "Começamos a namorar"
+
+        // Update timer every second
         setInterval(() => updateTimer(currentTimer), 1000);
     </script>
 
