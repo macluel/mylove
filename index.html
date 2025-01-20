@@ -16,50 +16,57 @@
         }
 
         .slideshow-container {
-            width: 350px; /* Fixed width */
-            height: 500px; /* Fixed height */
+            width: 350px;
+            height: 500px;
             margin: auto;
             text-align: center;
-            position: relative; /* Keep images in place */
-            overflow: hidden; /* Prevent layout shifting */
+            position: relative;
+            overflow: hidden;
         }
 
         .slides {
-            width: 100%; /* Make images fit the container */
-            height: 100%; /* Maintain fixed height */
-            object-fit: cover; /* Prevents distortion, fills the container */
-            position: absolute; /* Stack images on top of each other */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
         }
 
         .timer {
             font-size: 24px;
             margin-top: 20px;
-            cursor: pointer; /* Make it clickable */
+            cursor: pointer;
         }
 
         .timer-title {
             font-size: 28px;
             font-weight: bold;
-            color: #F0F0F0; /* Soft white */
+            color: #F0F0F0;
             margin-top: 10px;
-            cursor: pointer; /* Make it clickable */
+            cursor: pointer;
         }
 
         .easter-egg {
-            display: none; /* Initially hide easter egg messages */
+            display: none;
             font-size: 18px;
             color: #F0F0F0;
             margin-top: 10px;
             font-style: italic;
         }
 
-        /* Hidden Timer Styles */
         #hiddenTimer {
             font-size: 12px;
             color: #F0F0F0;
             margin-top: 10px;
-            display: none; /* Hidden initially */
+            display: none;
         }
+
+        .individual-timer {
+            font-size: 14px;
+            color: #F0F0F0;
+            margin-top: 10px;
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -85,8 +92,8 @@
         <img class="slides" src="assets/images/IMG16.jpg" alt="Slide 16">
     </div>
 
-    <h1 id="headerOne">EU TE AMO</h1>
-    <h2 id="headerTwo">EU TE AMO</h2>
+    <h1 id="headerOne">Começamos a conversar</h1>
+    <h2 id="headerTwo">Nos conhecemos</h2>
     <h3 id="headerThree">EU TE AMO</h3>
     <h4 id="headerFour">EU TE AMO</h4>
     <h5 id="headerFive">EU TE AMO</h5>
@@ -98,13 +105,12 @@
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"></iframe>
 
-    <div id="timer" class="timer"></div> <!-- The timer section -->
-    
-    <!-- Hidden easter egg messages -->
-    <div id="startTalking" class="easter-egg">Começamos a conversar em: 6 de Dezembro de 2024</div>
-    <div id="firstMet" class="easter-egg">Nos conhecemos em: 13 de Dezembro de 2024</div>
+    <div id="timer" class="timer"></div>
 
-    <!-- Hidden timer that will appear when one of the "Eu te amo" headers is clicked -->
+    <div id="startTalking" class="easter-egg">Começamos a conversar em: December 6, 2024</div>
+    <div id="firstMet" class="easter-egg">Nos conhecemos em: December 13, 2024</div>
+    <div id="startDating" class="easter-egg">Começamos a namorar em: January 19, 2025</div>
+
     <div id="hiddenTimer">Tempo desde o clique: 0 segundos</div>
 
     <script>
@@ -117,76 +123,66 @@
             slideIndex++;
             if (slideIndex > slides.length) { slideIndex = 1; }
             slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 2000); // Change image every 2 seconds
+            setTimeout(showSlides, 2000);
         }
 
         function shuffleSlides() {
             let container = document.querySelector(".slideshow-container");
-            let slides = Array.from(container.children); // Convert to array
+            let slides = Array.from(container.children); 
 
-            // Fisher-Yates shuffle
             for (let i = slides.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1)); // Random index
-                [slides[i], slides[j]] = [slides[j], slides[i]]; // Swap elements
+                let j = Math.floor(Math.random() * (i + 1));
+                [slides[i], slides[j]] = [slides[j], slides[i]];
             }
 
-            // Re-add shuffled slides back to the container
             slides.forEach(slide => container.appendChild(slide));
         }
 
         shuffleSlides();
         showSlides();
 
-        // Function to update the timer
         function updateTimer() {
-            // Set the start date (01/19/2025)
             var startDate = new Date("January 19, 2025 00:00:00").getTime();
-
-            // Get the current date and time
             var currentDate = new Date().getTime();
-
-            // Calculate the time difference in milliseconds
             var timeDiff = currentDate - startDate;
-
-            // Calculate the time in days, hours, minutes, and seconds
             var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
             var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-            // Display the result
             document.getElementById("timer").innerHTML = "Juntos desde: " + days + " dias " + hours + " horas " + minutes + " minutos " + seconds + " segundos";
         }
 
-        // Update the timer every 1000 milliseconds (1 second)
         setInterval(updateTimer, 1000);
-
-        // Call the function once to show the time immediately
         updateTimer();
 
-        // Autoplay Spotify iframe on page load
         window.onload = function() {
             var iframe = document.getElementById('spotifyIframe');
-            iframe.src += "&autoplay=1";  // Add autoplay when the page loads
+            iframe.src += "&autoplay=1";
         }
 
-        // Show the easter egg messages when the timer title is clicked
         document.getElementById("timer").onclick = function() {
             document.getElementById("startTalking").style.display = "block";
             document.getElementById("firstMet").style.display = "block";
+            document.getElementById("startDating").style.display = "block";
         }
 
-        // Hidden timer logic when any "Eu te amo" header is clicked
         let headerElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
         headerElements.forEach(header => {
             header.addEventListener('click', function() {
-                document.getElementById("hiddenTimer").style.display = "block"; // Show the hidden timer
-                let startTime = Date.now(); // Get the time when clicked
+                // Create a new individual timer each time a header is clicked
+                let newTimer = document.createElement('div');
+                newTimer.classList.add('individual-timer');
+                newTimer.innerHTML = "Tempo desde o clique: 0 segundos";
+                document.body.appendChild(newTimer); // Add timer to the body
 
-                // Update the hidden timer every second
+                let startTime = Date.now();
+
+                newTimer.style.display = "block"; // Show the new timer
+
                 setInterval(function() {
                     let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-                    document.getElementById("hiddenTimer").innerHTML = "Tempo desde o clique: " + elapsedTime + " segundos";
+                    newTimer.innerHTML = "Tempo desde o clique: " + elapsedTime + " segundos";
                 }, 1000);
             });
         });
