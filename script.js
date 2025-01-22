@@ -25,7 +25,7 @@ const getAccessToken = async () => {
 // Function to fetch and display playlist data
 const displayPlaylist = async (playlistId) => {
     const token = await getAccessToken();
-    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+    const response = await fetch(`https://api.spotify.com/v1/playlists/5qEOCUhoWS6S2JNHb7M5Zd`, {
         headers: { 'Authorization': `Bearer ${token}` },
     });
 
