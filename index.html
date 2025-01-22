@@ -1,84 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <title>Eu te amo</title>
+    <title>Optimized Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <h1>Um simples presente</h1>
-    <h3>Para a dona do meu coração…</h3>
-
+    <!-- Slideshow -->
     <div class="slideshow-container">
-        <img class="slides" src="assets/images/IMG1.jpg" alt="Slide 1">
-        <img class="slides" src="assets/images/IMG2.jpg" alt="Slide 2">
-        <img class="slides" src="assets/images/IMG3.jpg" alt="Slide 3">
-        <img class="slides" src="assets/images/IMG4.jpg" alt="Slide 4">
-        <img class="slides" src="assets/images/IMG5.jpg" alt="Slide 5">
-        <img class="slides" src="assets/images/IMG6.jpg" alt="Slide 6">
-        <img class="slides" src="assets/images/IMG7.jpg" alt="Slide 7">
-        <img class="slides" src="assets/images/IMG8.jpg" alt="Slide 8">
-        <img class="slides" src="assets/images/IMG9.jpg" alt="Slide 9">
-        <img class="slides" src="assets/images/IMG10.jpg" alt="Slide 10">
-        <img class="slides" src="assets/images/IMG11.jpg" alt="Slide 11">
-        <img class="slides" src="assets/images/IMG12.jpg" alt="Slide 12">
-        <img class="slides" src="assets/images/IMG13.jpg" alt="Slide 13">
-        <img class="slides" src="assets/images/IMG14.jpg" alt="Slide 14">
-        <img class="slides" src="assets/images/IMG15.jpg" alt="Slide 15">
-        <img class="slides" src="assets/images/IMG16.jpg" alt="Slide 16">
+        <img class="slides" src="image1.jpg" />
+        <img class="slides" src="image2.jpg" />
+        <img class="slides" src="image3.jpg" />
     </div>
-
-    <h1>EU TE AMO</h1>
-    <h2>EU TE AMO</h2>
-    <h3>EU TE AMO</h3>
-    <h4>EU TE AMO</h4>
-    <h5>EU TE AMO</h5>
-
-    <script>
-  // Function to initialize the Spotify Web Playback SDK
-  window.onSpotifyWebPlaybackSDKReady = () => {
-    // Fetch the token
-    getAccessToken().then((token) => {
-      // Create the player
-      const player = new Spotify.Player({
-        name: 'Custom Spotify Player',
-        getOAuthToken: (cb) => {
-          cb(token);
-        },
-        volume: 0.5, // Initial volume
-      });
-
-      // Handle the 'ready' event, which means the player is ready to play
-      player.addListener('ready', ({ device_id }) => {
-        console.log('The Web Playback SDK is ready with device ID', device_id);
-        // Now you can use the player to play a playlist or track
-      });
-
-      // Handle playback state changes
-      player.addListener('player_state_changed', (state) => {
-        console.log(state); // Logs current playback state (track, progress, etc.)
-      });
-
-      // Connect the player
-      player.connect();
-    });
-  };
-</script>
-
 
     <!-- Timer Section -->
     <div id="timer-container">
-        <div id="timer-title" class="timer-title">Quando começamos a namorar…</div>
-        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- The timer section -->
+        <span id="timer" class="timer"></span>
+        <h3 id="timer-title" class="timer-title"></h3>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Spotify Player -->
+    <div id="spotify-player"></div>
 
+    <!-- Playlist Container -->
+    <div id="playlist-container"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
