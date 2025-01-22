@@ -32,6 +32,57 @@ async function getAccessToken() {
     return data.access_token;
 }
 
+// Function to fetch playlist data using the access token
+async function getPlaylistData(playlistId) {
+    const token = await getAccessToken();
+    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    const data = await response.json();
+    return data;
+}
+
+// Function to display the playlist data
+async function displayPlaylist(playlistId) {
+    const playlistData = await getPlaylistData(playlistId);
+    const trackList = playlistData.tracks.items;
+
+    const playlistContainer = document.getElementById('playlist-container');
+    playlistContainer.innerHTML = ''; // Clear existing content
+
+    trackList.forEach(track => {
+        const trackItem = document.createElement('div');
+        trackItem.classList.add('track-item');
+
+        // Create elements for track info (name, artist, album art)
+        const trackName = document.createElement('h3');
+        trackName.innerText = track.track.name;
+
+        const trackArtist = document.createElement('p');
+        trackArtist.innerText = track.track.artists[0].name;
+
+        const trackImage = document.createElement('img');
+        trackImage.src = track.track.album.images[0].url;
+        trackImage.alt = `${track.track.name} cover`;
+
+        const trackLink = document.createElement('a');
+        trackLink.href = track.track.external_urls.spotify;
+        trackLink.innerText = 'Listen on Spotify';
+
+        // Append elements to the track item
+        trackItem.appendChild(trackImage);
+        trackItem.appendChild(trackName);
+        trackItem.appendChild(trackArtist);
+        trackItem.appendChild(trackLink);
+
+        // Append track item to playlist container
+        playlistContainer.appendChild(trackItem);
+    });
+}
+
 // Function to change slides
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
@@ -86,3 +137,6 @@ setInterval(() => updateTimer(currentTimer), 1000);
 
 // Initialize Spotify Player (called after the page loads)
 initializeSpotifyPlayer();
+
+// Display Spotify playlist with the function
+displayPlaylist('your_playlist_id'); // Replace with your actual playlist ID
