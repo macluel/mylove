@@ -17,6 +17,21 @@ const timerData = [
     }
 ];
 
+// Function to get the Spotify access token
+async function getAccessToken() {
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Basic ' + btoa('fdba7595753e4dd9bbf4265460d9053d:f2124e5fb90e4863b85846b1a778d7f3'), // Replace with your credentials
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'grant_type=client_credentials',
+    });
+
+    const data = await response.json();
+    return data.access_token;
+}
+
 // Function to change slides
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
@@ -50,6 +65,18 @@ function cycleTimer() {
     updateTimer(currentTimer);
 }
 
+// This function will be used to interact with Spotify once the token is available
+async function initializeSpotifyPlayer() {
+    const accessToken = await getAccessToken();
+
+    // You can use the access token here to make API requests, e.g., to control playback or embed Spotify content
+    console.log("Access Token:", accessToken);
+
+    // For now, you could simply display an iframe with a Spotify playlist, but we could also use the token to interact more directly with the Spotify Web API
+    const spotifyEmbed = document.getElementById("spotify-player");
+    spotifyEmbed.innerHTML = `<iframe src="https://open.spotify.com/embed/playlist/your_playlist_id" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
+}
+
 // Initial setup
 showSlides();
 updateTimer(0); // Initial timer for "Começamos a namorar"
@@ -57,5 +84,5 @@ updateTimer(0); // Initial timer for "Começamos a namorar"
 // Update timer every second
 setInterval(() => updateTimer(currentTimer), 1000);
 
-// Cycle through timers every 10 seconds (adjust timing as necessary)
-setInterval(() => cycleTimer(), 10000); // Change timer every 10 seconds
+// Initialize Spotify Player (called after the page loads)
+initializeSpotifyPlayer();
