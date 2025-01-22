@@ -56,3 +56,6 @@ updateTimer(0); // Initial timer for "Começamos a namorar"
 
 // Update timer every second
 setInterval(() => updateTimer(currentTimer), 1000);
+
+// Cycle through timers every 10 seconds (adjust timing as necessary)
+setInterval(() => cycleTimer(), 10000); // Change timer every 10 seconds
