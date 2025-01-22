@@ -39,19 +39,23 @@
     <h4>EU TE AMO</h4>
     <h5>EU TE AMO</h5>
 
+    <!-- Spotify Playlist -->
     <iframe id="spotifyIframe" style="border-radius:12px" 
         src="https://open.spotify.com/playlist/5qEOCUhoWS6S2JNHb7M5Zd?si=8b3c853834ca4d84&nd=1&dlsi=0a8a95c9dc7546eb"
         width="100%" height="152" frameBorder="0" 
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"></iframe>
 
+    <!-- Offline Fallback (for offline testing) -->
+    <div id="offlineMessage" style="display: none;">
+        <p>Spotify playlist is unavailable offline. Please connect to the internet to view it.</p>
+    </div>
+
     <!-- Timer Section -->
     <div id="timer-container">
         <div id="timer-title" class="timer-title">Começamos a namorar</div>
         <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- The timer section -->
     </div>
-
-    <script src="script.js"></script>
 
 </body>
 </html>
