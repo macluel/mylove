@@ -84,6 +84,15 @@ async function displayPlaylist(playlistId) {
     });
 }
 
+player.addListener('ready', ({ device_id }) => {
+  console.log('The Web Playback SDK is ready with device ID', device_id);
+  
+  // Play a playlist by URI (use your actual playlist URI)
+  player.play({
+    context_uri: 'spotify:playlist:YOUR_PLAYLIST_ID', // Replace with your playlist ID
+  });
+});
+
 // Function to change slides
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
