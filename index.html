@@ -40,7 +40,37 @@
     <h4>EU TE AMO</h4>
     <h5>EU TE AMO</h5>
 
-    <div id="playlist-container"></div> <!-- Container for displaying the playlist -->
+    <script>
+  // Function to initialize the Spotify Web Playback SDK
+  window.onSpotifyWebPlaybackSDKReady = () => {
+    // Fetch the token
+    getAccessToken().then((token) => {
+      // Create the player
+      const player = new Spotify.Player({
+        name: 'Custom Spotify Player',
+        getOAuthToken: (cb) => {
+          cb(token);
+        },
+        volume: 0.5, // Initial volume
+      });
+
+      // Handle the 'ready' event, which means the player is ready to play
+      player.addListener('ready', ({ device_id }) => {
+        console.log('The Web Playback SDK is ready with device ID', device_id);
+        // Now you can use the player to play a playlist or track
+      });
+
+      // Handle playback state changes
+      player.addListener('player_state_changed', (state) => {
+        console.log(state); // Logs current playback state (track, progress, etc.)
+      });
+
+      // Connect the player
+      player.connect();
+    });
+  };
+</script>
+
 
     <!-- Timer Section -->
     <div id="timer-container">
