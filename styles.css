@@ -1,19 +1,88 @@
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: #FFFBD4;
-    text-align: center;
-    background-color: #090614;
-    margin: 0;
-    padding: 0;
+/* Playlist styling */
+#playlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+.track-item {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.track-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.track-item h3 {
+    color: #FFFBD4;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.track-item p {
+    color: #C5C5C5;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.track-item .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.track-item:hover .play-button {
+    opacity: 1;
+}
+
+.track-item a {
+    color: #1DB954;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.track-item a:hover {
+    text-decoration: underline;
+}
+
+/* Slideshow */
 .slideshow-container {
     width: 100%;
+    height: 400px;
     max-width: 350px;
-    aspect-ratio: 7/10;
     margin: auto;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 
 .slides {
@@ -25,45 +94,12 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
-.timer {
-    font-size: 30px;
-    color: #FFFBD4;
-    background-color: transparent;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s;
+.slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.timer:hover {
-    transform: scale(1.1);
-}
-
-.timer-title {
-    font-size: 20px;
-    color: #F0F0F0;
-    margin-top: 10px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 10px;
-}
-
-@media (max-width: 600px) {
-    .slideshow-container {
-        width: 90%;
-    }
-    .timer {
-        font-size: 24px;
-        padding: 8px;
-    }
-    .timer-title {
-        font-size: 18px;
-    }
-    h1 {
-        font-size: 24px;
-    }
-    h2 {
-        font-size: 20px;
-    }
+.slides.active {
+    opacity: 1;
 }
