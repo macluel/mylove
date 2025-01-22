@@ -1,152 +1,111 @@
 let slideIndex = 0;
-let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
+let currentTimer = 0;  // 0: Namorar, 1: Conversar, 2: Conhecer
 
-// Timer data in the new order
+// Timer data for different events
 const timerData = [
-    {
-        title: "Quando começamos a namorar…",
-        startDate: "January 19, 2025 00:00:00"
-    },
-    {
-        title: "Quando começamos a conversar…",
-        startDate: "December 6, 2024 01:17:00"
-    },
-    {
-        title: "Quando nos conhecemos…",
-        startDate: "December 13, 2024 20:00:00"
-    }
+    { title: "Quando começamos a namorar…", startDate: "January 19, 2025 00:00:00" },
+    { title: "Quando começamos a conversar…", startDate: "December 6, 2024 01:17:00" },
+    { title: "Quando nos conhecemos…", startDate: "December 13, 2024 20:00:00" }
 ];
 
-// Function to get the Spotify access token
-async function getAccessToken() {
-  const response = await fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Basic ' + btoa('fdba7595753e4dd9bbf4265460d9053d:f2124e5fb90e4863b85846b1a778d7f3'),
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: 'grant_type=client_credentials',
-  });
-
-  const data = await response.json();
-  return data.access_token;
-}
-
-
-// Function to fetch playlist data using the access token
-async function getPlaylistData(playlistId) {
-    const token = await getAccessToken();
-    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+// Function to get the Spotify access token (Optimized using async/await)
+const getAccessToken = async () => {
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
         headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Basic ' + btoa('fdba7595753e4dd9bbf4265460d9053d:f2124e5fb90e4863b85846b1a778d7f3'),
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
+        body: 'grant_type=client_credentials',
     });
 
-    const data = await response.json();
-    return data;
-}
+    return (await response.json()).access_token;
+};
 
-// Function to display the playlist data
-async function displayPlaylist(playlistId) {
-    const playlistData = await getPlaylistData(playlistId);
+// Function to fetch and display playlist data
+const displayPlaylist = async (playlistId) => {
+    const token = await getAccessToken();
+    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+    });
+
+    const playlistData = await response.json();
     const trackList = playlistData.tracks.items;
-
     const playlistContainer = document.getElementById('playlist-container');
-    playlistContainer.innerHTML = ''; // Clear existing content
+    playlistContainer.innerHTML = '';
 
     trackList.forEach(track => {
         const trackItem = document.createElement('div');
         trackItem.classList.add('track-item');
 
-        // Create elements for track info (name, artist, album art)
-        const trackName = document.createElement('h3');
-        trackName.innerText = track.track.name;
-
-        const trackArtist = document.createElement('p');
-        trackArtist.innerText = track.track.artists[0].name;
-
-        const trackImage = document.createElement('img');
-        trackImage.src = track.track.album.images[0].url;
-        trackImage.alt = `${track.track.name} cover`;
-
-        const trackLink = document.createElement('a');
-        trackLink.href = track.track.external_urls.spotify;
-        trackLink.innerText = 'Listen on Spotify';
-
-        // Append elements to the track item
-        trackItem.appendChild(trackImage);
-        trackItem.appendChild(trackName);
-        trackItem.appendChild(trackArtist);
-        trackItem.appendChild(trackLink);
-
-        // Append track item to playlist container
+        trackItem.innerHTML = `
+            <img src="${track.track.album.images[0].url}" alt="${track.track.name} cover">
+            <h3>${track.track.name}</h3>
+            <p>${track.track.artists[0].name}</p>
+            <a href="${track.track.external_urls.spotify}" target="_blank">Listen on Spotify</a>
+        `;
+        
         playlistContainer.appendChild(trackItem);
     });
-}
+};
 
-player.addListener('ready', ({ device_id }) => {
-  console.log('The Web Playback SDK is ready with device ID', device_id);
-  
-  // Play a playlist by URI (use your actual playlist URI)
-  player.play({
-    context_uri: 'spotify:playlist:YOUR_PLAYLIST_ID', // Replace with your playlist ID
-  });
-});
+// Initialize Spotify Web Playback SDK
+const initializeSpotifyPlayer = async () => {
+    const token = await getAccessToken();
+    const player = new Spotify.Player({
+        name: 'My Spotify Player',
+        getOAuthToken: (cb) => cb(token),
+        volume: 0.5
+    });
 
-// Function to change slides
-function showSlides() {
-    let slides = document.getElementsByClassName("slides");
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; }
-    slides[slideIndex - 1].style.display = "block";
+    player.addListener('ready', ({ device_id }) => {
+        console.log('Web Playback SDK ready with device ID:', device_id);
+        player.play({ context_uri: 'spotify:playlist:YOUR_PLAYLIST_ID' });
+    });
+
+    player.connect();
+};
+
+// Function to change slides with smoother transitions
+const showSlides = () => {
+    const slides = document.querySelectorAll(".slides");
+    slides.forEach(slide => slide.style.opacity = "0");
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.opacity = "1";
     setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
+};
 
-// Function to update the timer
-function updateTimer(timerIndex) {
-    var startDate = new Date(timerData[timerIndex].startDate).getTime();
-    var currentDate = new Date().getTime();
-    var timeDiff = currentDate - startDate;
+// Timer formatting and update function
+const formatTime = (value) => (value < 10 ? `0${value}` : value);
 
-    var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+const updateTimer = (timerIndex) => {
+    const startDate = new Date(timerData[timerIndex].startDate).getTime();
+    const currentDate = Date.now();
+    const timeDiff = currentDate - startDate;
 
-    document.getElementById("timer").innerHTML = `${days}:${hours}:${minutes}:${seconds}`;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").innerHTML = `${formatTime(days)}:${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
     document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
-}
+};
 
-// Function to cycle through the timers
-function cycleTimer() {
+// Function to cycle through timers
+const cycleTimer = () => {
     currentTimer = (currentTimer + 1) % timerData.length;
     updateTimer(currentTimer);
-}
+};
 
-// This function will be used to interact with Spotify once the token is available
-async function initializeSpotifyPlayer() {
-    const accessToken = await getAccessToken();
+// Initialize everything on page load
+const init = () => {
+    showSlides();
+    updateTimer(0);  // Start with "Começamos a namorar"
+    setInterval(() => updateTimer(currentTimer), 1000);  // Update timer every second
+    initializeSpotifyPlayer();
+    displayPlaylist('your_playlist_id');  // Replace with actual playlist ID
+};
 
-    // You can use the access token here to make API requests, e.g., to control playback or embed Spotify content
-    console.log("Access Token:", accessToken);
-
-    // For now, you could simply display an iframe with a Spotify playlist, but we could also use the token to interact more directly with the Spotify Web API
-    const spotifyEmbed = document.getElementById("spotify-player");
-    spotifyEmbed.innerHTML = `<iframe src="https://open.spotify.com/embed/playlist/your_playlist_id" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
-}
-
-// Initial setup
-showSlides();
-updateTimer(0); // Initial timer for "Começamos a namorar"
-
-// Update timer every second
-setInterval(() => updateTimer(currentTimer), 1000);
-
-// Initialize Spotify Player (called after the page loads)
-initializeSpotifyPlayer();
-
-// Display Spotify playlist with the function
-displayPlaylist('your_playlist_id'); // Replace with your actual playlist ID
+// Run initialization
+init();
