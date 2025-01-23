@@ -67,7 +67,8 @@ h1, h2 {
 
 /* Timer Title Fix */
 #timer-title {
-    font-size: 28px; /* You can change the font size here */
+    font-family: 'Montserrat', serif;
+    font-size: 36px; /* You can change the font size here */
     font-weight: 600;
     margin-bottom: 20px;
 }
@@ -75,7 +76,7 @@ h1, h2 {
 /* Timer Title Responsiveness */
 @media screen and (max-width: 768px) {
     #timer-title {
-        font-size: 28px; /* Smaller font size for mobile */
+        font-size: 36px; /* Smaller font size for mobile */
     }
 }
 
