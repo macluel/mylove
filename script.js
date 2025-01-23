@@ -91,3 +91,16 @@ function cycleTimer() {
 
 // Initialize the slideshow with setInterval
 setInterval(showSlides, 3000); // Every 3 seconds
+
+// Dark Mode Toggle Function
+const toggleButton = document.createElement('button');
+toggleButton.classList.add('dark-mode-toggle');
+toggleButton.innerText = '🌙';  // Symbol for dark mode toggle
+document.body.appendChild(toggleButton);
+
+// Toggle Dark Mode
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    // Toggle button text between moon and sun
+    toggleButton.innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+});
