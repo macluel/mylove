@@ -40,8 +40,13 @@ body {
 }
 
 /* Remove the red outline on focused slides */
-.slides:focus, .slides img:focus {
-    outline: none; /* Remove the outline */
+* {
+    outline: none !important; /* Remove all outlines */
+}
+
+/* Specific fix for slideshow container and images */
+.slideshow-container, .slides, .slides img {
+    outline: none !important; /* Remove any outline */
 }
 
 /* Timer Container */
