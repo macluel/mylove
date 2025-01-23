@@ -68,7 +68,7 @@ h1, h2 {
 /* Timer Title Fix */
 #timer-title {
     font-family: 'Montserrat', serif;
-    font-size: 60px; /* You can change the font size here */
+    font-size: 40px; /* You can change the font size here */
     font-weight: 600;
     margin-bottom: 20px;
 }
@@ -76,19 +76,19 @@ h1, h2 {
 /* Timer Title Responsiveness */
 @media screen and (max-width: 768px) {
     #timer-title {
-        font-size: 40px; /* Smaller font size for mobile */
+        font-size: 34px; /* Smaller font size for mobile */
     }
 }
 
 /* Timer Number Styles */
 .unit-container span {
-    font-size: 30px; /* Increase font size for numbers */
+    font-size: 20px; /* Increase font size for numbers */
     font-weight: bold;
     padding: 5px 0;
 }
 
 /* Timer Title Fix (Additional if needed) */
 .timer-title {
-    font-size: 40px;
+    font-size: 34px;
     font-weight: bold;
 }
