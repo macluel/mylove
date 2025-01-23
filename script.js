@@ -1,18 +1,31 @@
-// Function to change slides
+let slideIndex = 0;
+
+// Function to show the slides
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
+    
+    // Hide all slides initially
     for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none"; // Hide all slides
+        slides[i].classList.remove("active");
     }
+    
+    // Increment slide index, if it exceeds the total, reset to 1
     slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; } // Loop back to first slide
-    slides[slideIndex - 1].style.display = "block"; // Show the current slide
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+
+    // Show the current slide
+    slides[slideIndex - 1].classList.add("active");
 }
 
-let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
+// Start the slideshow and update timer on load
+window.onload = function() {
+    showSlides(); // Start the slideshow
+    updateTimer(0); // Start with the first timer
+};
 
-// Timer data in the new order
+// Timer data
 const timerData = [
     {
         title: "Começamos a namorar",
@@ -27,6 +40,8 @@ const timerData = [
         startDate: "December 13, 2024 00:00:00"
     }
 ];
+
+let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
 
 // Function to update the timer
 function updateTimer(timerIndex) {
@@ -74,7 +89,5 @@ function cycleTimer() {
     updateTimer(currentTimer); // Update the timer display
 }
 
-// Initial setup to ensure the correct timer is displayed on load
-window.onload = function() {
-    updateTimer(0); // Start with the first timer on load
-};
+// Initialize the slideshow with setInterval
+setInterval(showSlides, 3000); // Every 3 seconds
