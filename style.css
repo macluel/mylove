@@ -26,23 +26,50 @@ body {
     display: block; /* Display the current image */
 }
 
+/* Timer Container */
 .timer {
-    font-size: 24px;
-    margin-top: 20px;
+    font-size: 10px;
+    margin-top: 5px;
     color: #FFFBD4;
     background-color: #2D2D2D;
-    padding: 10px;
-    border-radius: 10px;
-    display: inline-block;
+    padding: 0px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     cursor: pointer;
-    padding_bottom: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Zoom effect on hover */
+.timer:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+    background-color: #3e3e3e;
+}
+
+/* Title Styling */
 .timer-title {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     color: #F0F0F0;
-    margin-top: 10px;
+    margin-top: 0px;
+}
+
+/* Unit Container for Days, Hours, Minutes, Seconds */
+.timer .unit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px;
+}
+
+/* Number Styling */
+.timer .unit-container span {
+    font-size: 20px;
+    color: #F0F0F0;
+    margin-top: 4px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,10 +81,10 @@ h1 {
 }
 
 /* Mobile-friendly adjustments */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .slideshow-container {
-        width: 90%;
-        height: 350px;
+        width: 800%;
+        height: 450px;
     }
     .timer {
         font-size: 24px; /* Adjust for mobile */
@@ -73,4 +100,3 @@ h1 {
         font-size: 20px;
     }
 }
-
