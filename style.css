@@ -35,6 +35,7 @@ body {
     border-radius: 10px;
     display: inline-block;
     cursor: pointer;
+    padding_bottom: 10px;
 }
 
 .timer-title {
@@ -53,7 +54,7 @@ h1 {
 }
 
 /* Mobile-friendly adjustments */
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .slideshow-container {
         width: 90%;
         height: 350px;
