@@ -51,6 +51,7 @@ h1, h2 {
 
 .unit-container span {
     font-size: 20px;
+    font-weight: bold; /* Ensures the text is more prominent */
 }
 
 /* Fade Effects */
@@ -64,22 +65,29 @@ h1, h2 {
     transition: opacity 0.5s ease-in;
 }
 
-/* Dark Mode Toggle Button */
-.dark-mode-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #fff;
-    color: #333;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 20px;
-    border: none;
-    transition: background-color 0.3s, color 0.3s;
+/* Timer Title Fix */
+#timer-title {
+    font-size: 28px; /* You can change the font size here */
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
-.dark-mode-toggle:hover {
-    background-color: #f0f0f0;
+/* Timer Title Responsiveness */
+@media screen and (max-width: 768px) {
+    #timer-title {
+        font-size: 28px; /* Smaller font size for mobile */
+    }
+}
+
+/* Timer Number Styles */
+.unit-container span {
+    font-size: 24px; /* Increase font size for numbers */
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+/* Timer Title Fix (Additional if needed) */
+.timer-title {
+    font-size: 28px;
+    font-weight: bold;
 }
