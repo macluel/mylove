@@ -1,4 +1,15 @@
-let slideIndex = 0;
+// Function to change slides
+function showSlides() {
+    let slides = document.getElementsByClassName("slides");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none"; // Hide all slides
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; } // Loop back to first slide
+    slides[slideIndex - 1].style.display = "block"; // Show the current slide
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
 let currentTimer = 0; // 0 - Começamos a namorar, 1 - Começamos a conversar, 2 - Nos conhecemos
 
 // Timer data in the new order
@@ -17,18 +28,6 @@ const timerData = [
     }
 ];
 
-// Function to change slides
-function showSlides() {
-    let slides = document.getElementsByClassName("slides");
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none"; // Hide all slides
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; } // Loop back to first slide
-    slides[slideIndex - 1].style.display = "block"; // Show the current slide
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
-
 // Function to update the timer
 function updateTimer(timerIndex) {
     var startDate = new Date(timerData[timerIndex].startDate).getTime();
@@ -40,24 +39,42 @@ function updateTimer(timerIndex) {
     var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-    document.getElementById("timer").innerHTML = `${days} : ${hours} : ${minutes} : ${seconds} `;
-    document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
+    // Fade out previous numbers
+    document.getElementById("days-number").classList.add("fade-out");
+    document.getElementById("hours-number").classList.add("fade-out");
+    document.getElementById("minutes-number").classList.add("fade-out");
+    document.getElementById("seconds-number").classList.add("fade-out");
+
+    // Wait for fade-out to finish, then update and fade in new numbers
+    setTimeout(() => {
+        document.getElementById("days-number").innerText = days;
+        document.getElementById("hours-number").innerText = hours;
+        document.getElementById("minutes-number").innerText = minutes;
+        document.getElementById("seconds-number").innerText = seconds;
+
+        // Remove fade-out and add fade-in effect
+        document.getElementById("days-number").classList.remove("fade-out");
+        document.getElementById("hours-number").classList.remove("fade-out");
+        document.getElementById("minutes-number").classList.remove("fade-out");
+        document.getElementById("seconds-number").classList.remove("fade-out");
+
+        document.getElementById("days-number").classList.add("fade-in");
+        document.getElementById("hours-number").classList.add("fade-in");
+        document.getElementById("minutes-number").classList.add("fade-in");
+        document.getElementById("seconds-number").classList.add("fade-in");
+
+        // Update the title
+        document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
+    }, 500); // Duration must match the CSS transition
 }
 
 // Function to cycle through the timers
 function cycleTimer() {
     currentTimer = (currentTimer + 1) % timerData.length;
-    updateTimer(currentTimer);
+    updateTimer(currentTimer); // Update the timer display
 }
 
-// Initial setup to ensure everything loads correctly
+// Initial setup to ensure the correct timer is displayed on load
 window.onload = function() {
-    showSlides(); // Start slideshow
-    updateTimer(0); // Immediately display the first timer on load
+    updateTimer(0); // Start with the first timer on load
 };
-
-// Check if iframe fails to load and display offline message (for testing without internet)
-document.getElementById('spotifyIframe').onerror = function() {
-    document.getElementById('offlineMessage').style.display = 'block';
-};
-
