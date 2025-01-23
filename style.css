@@ -94,11 +94,13 @@ h1 {
 }
 
 /* Mobile-friendly adjustments */
-@media (max-width: 190px) {
-    .slideshow-container {
-        width: 900%;
-        height: 507px;
-    }
+@media (max-width: 600px) {
+.slideshow-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Adjusts image scaling */
+}
+    
     .timer {
         font-size: 20px; /* Adjust for mobile */
         padding: 8px;
