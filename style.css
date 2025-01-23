@@ -1,4 +1,3 @@
-/* General Styling */
 body {
     font-family: 'Montserrat', serif;
     color: #FFFBD4;
@@ -6,7 +5,6 @@ body {
     background-color: #090614;
 }
 
-/* Slideshow Container */
 .slideshow-container {
     width: 380px;
     height: 676px;
@@ -16,30 +14,17 @@ body {
     overflow: hidden;
 }
 
-/* Slide Images */
 .slides {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures images cover the space */
+    object-fit: cover; /* Ensure the image covers the area */
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 1s ease-in-out;
-    display: block; /* Ensures images are visible */
+    opacity: 0; /* Initially hide the slides */
+    transition: opacity 1s ease-in-out; /* Smooth fade transition */
 }
 
-/* Fix for images not appearing */
-.slides.active {
-    opacity: 1; /* Show the active slide */
-}
-
-/* Debugging Border (Remove if unnecessary) */
-.slides {
-    border: 2px solid red; /* Helps check if slides are visible */
-}
-
-/* Fade Effects */
 .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -50,13 +35,22 @@ body {
     transition: opacity 0.5s ease;
 }
 
-/* Timer Styling */
+.slides.active {
+    opacity: 1; /* Show the active slide */
+}
+
+/* Remove the red outline on focused slides */
+.slides:focus, .slides img:focus {
+    outline: none; /* Remove the outline */
+}
+
+/* Timer Container */
 .timer {
     font-size: 10px;
     margin-top: 5px;
     color: #FFFBD4;
     background-color: #2D2D2D;
-    padding: 5px;
+    padding: 0px;
     border-radius: 15px;
     display: flex;
     justify-content: space-around;
@@ -69,7 +63,7 @@ body {
 
 /* Zoom effect on hover */
 .timer:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slight zoom-in effect */
     background-color: #3e3e3e;
 }
 
@@ -96,7 +90,6 @@ body {
     margin-top: 4px;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
 }
@@ -106,40 +99,36 @@ h1 {
 }
 
 /* Mobile-friendly adjustments */
-@media (max-width: 380px) {
-    .slideshow-container {
-        width: 100%;  /* Makes it responsive */
-        max-width: 100vw;
-        height: auto;
-    }
-
-    .slides {
+@media (max-width: 300px) {
+    .slideshow-container img {
         width: 100%;
         height: auto;
-        object-fit: cover;
+        object-fit: cover; /* Adjusts image scaling */
     }
 
     .timer {
-        font-size: 20px;
+        font-size: 20px; /* Adjust for mobile */
         padding: 8px;
     }
-
     .timer-title {
-        font-size: 8px;
+        font-size: 8px; /* Adjust title for mobile */
     }
-
     .timer .unit-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: 8px;
     }
 
+    /* Number Styling */
     .timer .unit-container span {
         font-size: 10px;
+        color: #F0F0F0;
+        margin-top: 2px;
     }
-
     h1 {
         font-size: 24px;
     }
-
     h2 {
         font-size: 20px;
     }
