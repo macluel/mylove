@@ -40,7 +40,7 @@ function updateTimer(timerIndex) {
     var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-    document.getElementById("timer").innerHTML = `${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos`;
+    document.getElementById("timer").innerHTML = `${days} : ${hours} : ${minutes} : ${seconds} `;
     document.getElementById("timer-title").innerHTML = timerData[timerIndex].title;
 }
 
