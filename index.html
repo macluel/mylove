@@ -18,6 +18,7 @@
     
     <div class="slideshow-container">
         <img class="slides" src="assets/images/IMG1.jpg" alt="Slide 1">
+        <img class="slides" src="assets/images/IMG2.jpg" alt="Slide 2">
         <img class="slides" src="assets/images/IMG3.jpg" alt="Slide 3">
         <img class="slides" src="assets/images/IMG4.jpg" alt="Slide 4">
         <img class="slides" src="assets/images/IMG5.jpg" alt="Slide 5">
@@ -49,8 +50,28 @@
     <!-- Timer Section -->
     <div id="timer-container">
         <div id="timer-title" class="timer-title">Começamos a namorar</div>
-        <div id="timer" class="timer" onclick="cycleTimer()">Click me to change timer</div> <!-- The timer section -->
+        <div id="timer" class="timer" onclick="cycleTimer()"> 
+            <div class="unit-container">
+                <span id="days-number">0</span>
+                <span>Days</span>
+            </div>
+            <div class="unit-container">
+                <span id="hours-number">0</span>
+                <span>Hours</span>
+            </div>
+            <div class="unit-container">
+                <span id="minutes-number">0</span>
+                <span>Minutes</span>
+            </div>
+            <div class="unit-container">
+                <span id="seconds-number">0</span>
+                <span>Seconds</span>
+            </div>
+        </div>
     </div>
+
+      
+    <h1></h1>
 
 </body>
 </html>
