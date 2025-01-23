@@ -1,141 +1,67 @@
-/* Basic Reset */
-* {
+/* General Styles */
+body {
+    font-family: 'Montserrat', serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #090614; /* Original background color */
+    color: #fff; /* White text color for better contrast with dark background */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Body styling */
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #090614;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
-    margin: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Header */
 h1, h2 {
-    font-weight: 100;
-    margin: 10px 0;
-    text-align: center;
-    padding: 0 20px;
-}
-
-/* Timer Container */
-#timer-container {
-    text-align: center;
-    margin-top: 40px;
-    padding: 0 15px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-/* Timer Styling */
-#timer {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    font-size: 2rem;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#timer:hover {
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Timer Units */
-.unit-container {
     text-align: center;
 }
 
-.unit-container span {
-    display: block;
-    font-size: 1.5rem;
-}
-
-/* Slideshow Container */
+/* Slideshow Styles */
 .slideshow-container {
     position: relative;
     max-width: 100%;
-    margin: 40px auto;
+    margin: auto;
 }
 
-/* Slideshow Images */
 .slides {
     display: none;
     width: 100%;
     height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Active Slide */
 .slides.active {
     display: block;
 }
 
-/* Heading Styling */
-h1, h2 {
-    font-size: 2.5rem;
+/* Timer Styles */
+#timer-container {
+    margin-top: 40px;
+    text-align: center;
 }
 
-/* Mobile Responsiveness */
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    #timer {
-        font-size: 1.5rem;
-        padding: 12px;
-    }
-
-    .unit-container {
-        font-size: 16px;
-    }
-
-    .slideshow-container {
-        width: 100%;
-        max-width: none;
-    }
-
-    iframe {
-        width: 90%;
-    }
+.timer {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #444; /* Slightly lighter background for the timer */
+    border-radius: 10px;
 }
 
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+.unit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-body.dark-mode .slideshow-container,
-body.dark-mode .timer,
-body.dark-mode iframe {
-    background-color: #333;
+.unit-container span {
+    font-size: 20px;
 }
 
-body.dark-mode #timer-container {
-    background-color: #444;
+/* Fade Effects */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
 }
 
-body.dark-mode .timer-title {
-    color: #fff;
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
 }
 
 /* Dark Mode Toggle Button */
@@ -149,6 +75,9 @@ body.dark-mode .timer-title {
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .dark-mode-toggle:hover {
