@@ -21,11 +21,11 @@ const timerData = [
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
     for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+        slides[i].style.display = "none"; // Hide all slides
     }
     slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; }
-    slides[slideIndex - 1].style.display = "block";
+    if (slideIndex > slides.length) { slideIndex = 1; } // Loop back to first slide
+    slides[slideIndex - 1].style.display = "block"; // Show the current slide
     setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 
@@ -50,11 +50,14 @@ function cycleTimer() {
     updateTimer(currentTimer);
 }
 
-// Initial setup
-showSlides();
-updateTimer(0); // Initial timer for "Começamos a namorar"
+// Initial setup to ensure everything loads correctly
+window.onload = function() {
+    showSlides(); // Start slideshow
+    updateTimer(0); // Immediately display the first timer on load
+};
 
-// Check if iframe fails to load and display offline message
+// Check if iframe fails to load and display offline message (for testing without internet)
 document.getElementById('spotifyIframe').onerror = function() {
     document.getElementById('offlineMessage').style.display = 'block';
 };
+
