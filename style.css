@@ -1,145 +1,156 @@
-/* Basic reset for body and html */
-html, body {
+/* Basic Reset */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f8f8f8;
+    box-sizing: border-box;
 }
 
-/* Slideshow container styling */
+/* Body styling */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+h1, h2 {
+    font-weight: 100;
+    margin: 10px 0;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Timer Container */
+#timer-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 0 15px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Timer Styling */
+#timer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 2rem;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#timer:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Timer Units */
+.unit-container {
+    text-align: center;
+}
+
+.unit-container span {
+    display: block;
+    font-size: 1.5rem;
+}
+
+/* Slideshow Container */
 .slideshow-container {
     position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
+    max-width: 100%;
+    margin: 40px auto;
 }
 
-/* Hide slides by default */
+/* Slideshow Images */
 .slides {
     display: none;
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Add a fade-in effect for slides */
+/* Active Slide */
 .slides.active {
     display: block;
-    animation: fade 1s ease-in-out;
 }
 
-/* Keyframe for fade effect */
-@keyframes fade {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Timer container styling */
-#timer-container {
-    text-align: center;
-    margin-top: 40px;
-}
-
-.timer-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-weight: 100;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-/* Timer unit container */
-.unit-container {
-    margin: 0 10px;
-    text-align: center;
-}
-
-/* Add smooth transition for fade-in and fade-out effects */
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-}
-
-/* Remove outlines from focused elements */
-*:focus {
-    outline: none !important;
-}
-
-/* Specifically remove outline from timer and slideshow images when focused */
-#timer-container:focus,
-#timer:focus,
-.slides:focus {
-    outline: none !important;
-}
-
-/* Text styling */
+/* Heading Styling */
 h1, h2 {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
+    font-size: 2.5rem;
 }
 
-h1 {
-    font-size: 40px;
-    font-weight: 100;
-}
-
-h2 {
-    font-size: 28px;
-    font-weight: 600;
-    padding-bottom: 20px;
-}
-
-/* Style for the text under timer */
-h1, .slideshow-container {
-    color: #333;
-}
-
-/* Spotify iframe styling */
-iframe {
-    padding-top: 40px;
-    border: none;
-    width: 66%;
-    height: 150px;
-}
-
-/* Responsive styling for smaller screens */
-@media screen and (max-width: 768px) {
-    .slideshow-container {
-        width: 100%;
+/* Mobile Responsiveness */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
     }
 
-    .unit-container {
-        font-size: 20px;
+    h2 {
+        font-size: 1.5rem;
     }
 
     #timer {
-        font-size: 24px;
-        padding: 10px;
+        font-size: 1.5rem;
+        padding: 12px;
+    }
+
+    .unit-container {
+        font-size: 16px;
+    }
+
+    .slideshow-container {
+        width: 100%;
+        max-width: none;
     }
 
     iframe {
-        width: 80%;
+        width: 90%;
     }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .slideshow-container,
+body.dark-mode .timer,
+body.dark-mode iframe {
+    background-color: #333;
+}
+
+body.dark-mode #timer-container {
+    background-color: #444;
+}
+
+body.dark-mode .timer-title {
+    color: #fff;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #333;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.dark-mode-toggle:hover {
+    background-color: #f0f0f0;
 }
