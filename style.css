@@ -170,13 +170,13 @@ h1 {
 }
 
 /* Mobile-friendly adjustments */
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .slideshow-container {
         width: 90%;
         height: 450px;
     }
     .audio-player {
-        max-width: 90%;
+        max-width: 60%;
         padding: 8px;
     }
 
@@ -185,7 +185,7 @@ h1 {
     }
 
     .audio-slider {
-        width: 75%;
+        width: 60%;
     }
 
     .play-pause {
@@ -193,7 +193,7 @@ h1 {
     }
     .timer {
         font-size: 18px; /* Slightly smaller font on mobile */
-        padding: 6px;
+        padding: 4px;
     }
 
     .timer-title {
