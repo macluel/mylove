@@ -176,20 +176,20 @@ h1 {
         height: 450px;
     }
     .audio-player {
-        max-width: 60%;
+        max-width: 70%;
         padding: 8px;
     }
 
     .audio-title {
-        font-size: 12px;
+        font-size: 20px;
     }
 
     .audio-slider {
-        width: 60%;
+        width: 70%;
     }
 
     .play-pause {
-        font-size: 16px;
+        font-size: 18px;
     }
     .timer {
         font-size: 18px; /* Slightly smaller font on mobile */
@@ -198,7 +198,7 @@ h1 {
     }
 
     .timer-title {
-        font-size: 18px; /* Adjust title font size for mobile */
+        font-size: 24px; /* Adjust title font size for mobile */
     }
 
     .timer .unit-container {
