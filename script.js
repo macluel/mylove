@@ -1,8 +1,18 @@
 let slideIndex = 0;
 
+// Function to shuffle the slides randomly
+function shuffleSlides() {
+    let slides = Array.from(document.getElementsByClassName("slides"));
+    for (let i = slides.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [slides[i], slides[j]] = [slides[j], slides[i]]; // Swap elements
+    }
+    return slides;
+}
+
 // Function to show the slides
 function showSlides() {
-    let slides = document.getElementsByClassName("slides");
+    let slides = shuffleSlides(); // Get the shuffled slides
     
     // Hide all slides initially
     for (let i = 0; i < slides.length; i++) {
@@ -17,6 +27,10 @@ function showSlides() {
 
     // Show the current slide
     slides[slideIndex - 1].classList.add("active");
+
+    // Random delay between 2 and 5 seconds for next slide transition
+    let randomDelay = Math.floor(Math.random() * (5000 - 2000 + 1)) + 2000; // Random delay between 2000ms and 5000ms
+    setTimeout(showSlides, randomDelay); // Use the random delay for the next slide transition
 }
 
 // Start the slideshow and update timer on load
