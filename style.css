@@ -1,122 +1,114 @@
-/* Basic Styling */
-body {
-    font-family: 'Montserrat', sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #090614; /* Original background color */
-    color: #fff; /* White text color for better contrast with dark background */
-    transition: background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
 }
 
-/* Timer Styling */
-#timer {
-    font-size: 30px;
-    font-weight: 400;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    margin-top: 5%;
-    padding: 5%;
+    align-items: center;
+    min-height: 100vh;
 }
 
-#timer-title {
-    font-size: 36px; /* Title font size */
-    font-weight: 100;
-}
-
-.unit-container {
-    display: flex;
-    margin-top: 10px;
-}
-
-.unit-container span {
-    font-size: 40px;
-    margin: 0 10px;
-}
-
-.timer {
-    font-weight: 600;
-    font-size: 50px; /* Adjusted for better visibility */
-    margin-top: 5px;
-}
-
-.timer span {
-    font-weight: 300;
-}
-
-#timer .fade-in {
-    animation: fadeIn 0.5s ease-out;
-}
-
-#timer .fade-out {
-    animation: fadeOut 0.5s ease-out;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-/* Slideshow Styling */
-.slides {
-    position: relative;
+header {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    background-color: #333;
+    padding: 20px 0;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
 }
 
-.slides img {
-    width: 100%; /* Image width will take full width of container */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure the image covers the container */
-    display: block; /* Remove any space below the image */
-    margin: 0 auto; /* Center the image */
+img {
+    width: 100%;
+    max-width: 200px;  /* Keeps the image from stretching beyond a certain size */
+    height: auto;      /* Maintains the aspect ratio of the image */
+    margin: 20px 0;
 }
 
-/* Animations */
-@keyframes fade {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+h1 {
+    font-size: 3rem;
+    margin-top: 20px;
 }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+main {
+    width: 100%;
+    padding: 20px;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    #timer-title {
-        font-size: 28px; /* Adjust font size for mobile screens */
+footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 10px 0;
+}
+
+input, textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+input:focus, textarea:focus {
+    border-color: #555;
+}
+
+@media (max-width: 200px) {
+    body {
+        padding: 10px;
     }
 
-    .unit-container span {
-        font-size: 18px; /* Smaller font size for timer numbers */
+    header {
+        font-size: 1.5rem;
     }
 
-    .timer {
-        font-size: 40px; /* Adjusted for mobile screen visibility */
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    img {
+        max-width: 90%;
+    }
+
+    footer {
+        font-size: 1rem;
     }
 }
