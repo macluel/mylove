@@ -108,4 +108,7 @@ window.addEventListener("load", function() {
     showSlides(); // Ensure the first slide appears
     setInterval(showSlides, 3000); // Start interval only after first slide is shown
     setInterval(() => updateTimer(currentTimer), 1000); // Update the timer every second
+    var audio = document.getElementById("myAudio");
+    audio.volume = 0.2;  // Set volume to 20%
 });
+
