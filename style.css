@@ -39,9 +39,10 @@ body {
     opacity: 1; /* Show the active slide */
 }
 
+/* Audio Player Styling */
 .audio-player {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px; /* Increased max-width slightly */
     margin: 20px auto;
     padding: 12px;
     background: #2D2D2D;
@@ -176,8 +177,8 @@ h1 {
         height: 450px;
     }
     .audio-player {
-        max-width: 70%;
-        padding: 8px;
+        max-width: 80%; /* Made it a bit wider */
+        padding: 10px;
     }
 
     .audio-title {
@@ -185,7 +186,7 @@ h1 {
     }
 
     .audio-slider {
-        width: 70%;
+        width: 75%; /* Slightly wider */
     }
 
     .play-pause {
