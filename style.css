@@ -1,131 +1,242 @@
-    body {
-        font-family: 'Montserrat', serif;
-        color: #FFFBD4;
-        text-align: center;
-        background-color: #090614;
-    }
+body {
+    font-family: 'Montserrat', serif;
+    color: #FFFBD4;
+    text-align: center;
+    background-color: #090614;
+}
 
+.slideshow-container {
+    width: 380px; /* Set the width of the container */
+    height: 676px; /* Set the height of the container */
+    margin: auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.slides {
+    width: 100%; /* Ensure the image scales to fit the width */
+    height: 100%; /* Ensure the image scales to fit the height */
+    object-fit: cover; /* The image will cover the container and may get cropped */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Initially hide the slides */
+    transition: opacity 1s ease-in-out; /* Smooth fade transition */
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.slides.active {
+    opacity: 1; /* Show the active slide */
+}
+
+.audio-player {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #2D2D2D;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #FFFBD4;
+}
+
+.audio-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.audio-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.audio-slider {
+    width: 90%;
+    margin: 10px 0;
+}
+
+.audio-progress {
+    width: 100%;
+    height: 5px;
+    background: #444;
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.audio-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.play-pause {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #FFFBD4;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.play-pause:hover {
+    color: #FFD700;
+}
+
+.audio-volume {
+    width: 100px;
+}
+
+.audio-volume-slider {
+    width: 100%;
+    height: 5px;
+    background: #444;
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.audio-volume-slider::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    background: #FFFBD4;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.audio-volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #FFFBD4;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* Timer Styling */
+.timer {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    color: #FFFBD4;
+    background-color: #2D2D2D;
+    padding: 0px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Zoom effect on hover */
+.timer:hover {
+    transform: scale(1.05);
+    background-color: #3e3e3e;
+}
+
+
+
+/* Base styles for timer */
+.timer {
+    font-size: 10px; /* This is probably too small for mobile */
+    margin-top: 5px;
+    margin-bottom: 30px;
+    color: #FFFBD4;
+    background-color: #2D2D2D;
+    padding: 0px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Zoom effect on hover */
+.timer:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+    background-color: #3e3e3e;
+}
+
+/* Title Styling */
+.timer-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFBD4;
+    margin-top: 30px;
+}
+
+/* Unit Container for Days, Hours, Minutes, Seconds */
+.timer .unit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px;
+}
+
+/* Number Styling */
+.timer .unit-container span {
+    font-size: 20px;
+    color: #FFFBD4;
+    margin-top: 4px;
+}
+
+h1 {
+    margin-top: 30px;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 600px) {
     .slideshow-container {
-        width: 380px; /* Set the width of the container */
-        height: 676px; /* Set the height of the container */
-        margin: auto;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
+        width: 90%;
+        height: 450px;
     }
-
-    .slides {
-        width: 100%; /* Ensure the image scales to fit the width */
-        height: 100%; /* Ensure the image scales to fit the height */
-        object-fit: cover; /* The image will cover the container and may get cropped */
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0; /* Initially hide the slides */
-        transition: opacity 1s ease-in-out; /* Smooth fade transition */
-    }
-
-    .fade-out {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-
-    .fade-in {
-        opacity: 1;
-        transition: opacity 0.5s ease;
-    }
-
-    .slides.active {
-        opacity: 1; /* Show the active slide */
-    }
-
-    /* Background music */
-    audio {
-        display: none; /* Hides the audio player */
-    }
-
-    /* Timer Container */
     .timer {
-        font-size: 10px;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        color: #FFFBD4;
-        background-color: #2D2D2D;
-        padding: 0px;
-        border-radius: 15px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        cursor: pointer;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 30px; /* Set font-size of entire timer container */
+        padding: 8px;
     }
-
-    /* Zoom effect on hover */
-    .timer:hover {
-        transform: scale(1.05); /* Slight zoom-in effect */
-        background-color: #3e3e3e;
-    }
-
-    /* Title Styling */
     .timer-title {
-        font-size: 30px;
-        font-weight: bold;
-        color: #F0F0F0;
-        margin-top: 30px;
+        font-size: 24px; /* Adjust title for mobile */
     }
-
-    /* Unit Container for Days, Hours, Minutes, Seconds */
     .timer .unit-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 12px;
+        margin: 8px;
     }
-
+    
     /* Number Styling */
     .timer .unit-container span {
-        font-size: 20px;
-        color: #F0F0F0;
-        margin-top: 4px;
+        font-size: 25px; /* Increase the number font size */
+        color: #FFFBD4;
+        margin-top: 2px;
     }
-
     h1 {
-        margin-top: 30px;
+        font-size: 24px;
     }
-
-    /* Mobile-friendly adjustments */
-    @media (max-width: 600px) {
-        .slideshow-container {
-            width: 90%;
-            height: 450px;
-        }
-        .timer {
-            font-size: 30px; /* Adjust for mobile */
-            padding: 8px;
-        }
-        .timer-title {
-            font-size: 24px; /* Adjust title for mobile */
-        }
-        .timer .unit-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 8px;
-        }
-        
-        /* Number Styling */
-        .timer .unit-container span {
-            font-size: 10px;
-            color: #F0F0F0;
-            margin-top: 2px;
-        }
-        h1 {
-            font-size: 24px;
-        }
-        h2 {
-            font-size: 20px;
-        }
-        
+    h2 {
+        font-size: 20px;
     }
+}
