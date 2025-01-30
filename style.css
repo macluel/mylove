@@ -13,30 +13,31 @@ h1, h2 {
 }
 
 /* Slideshow Styles */
-/* Slideshow Styles */
 .slideshow-container {
     position: relative;
     max-width: 100%;
     margin: auto;
-    overflow: hidden; /* Ensures no overflow of images */
+    overflow: hidden; /* Prevent image overflow */
 }
 
 .slides {
     display: none;
     width: 100%;
     height: auto;
-    object-fit: cover; /* Ensures images cover the container without distortion */
 }
 
 .slides.active {
     display: block;
 }
 
-/* Prevent the images from resizing unpredictably */
+/* Prevent images from resizing unpredictably */
 .slides img {
-    width: 100%; /* Make sure the image takes full width */
-    height: auto; /* Keep aspect ratio */
-    object-fit: cover; /* This ensures the image covers the container without distortion */
+    width: 100%; /* Image width will take full width of container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 500px; /* Limit max height to avoid overflow */
+    object-fit: cover; /* Ensure the image covers the container */
+    display: block; /* Remove any space below the image */
+    margin: 0 auto; /* Center the image */
 }
 
 /* Timer Styles */
