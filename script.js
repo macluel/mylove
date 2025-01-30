@@ -107,4 +107,5 @@ window.addEventListener("load", function() {
     shuffleSlides();
     showSlides(); // Ensure the first slide appears
     setInterval(showSlides, 3000); // Start interval only after first slide is shown
+    setInterval(() => updateTimer(currentTimer), 1000); // Update the timer every second
 });
