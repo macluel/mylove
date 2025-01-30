@@ -41,39 +41,38 @@ body {
 
 .audio-player {
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     margin: 20px auto;
-    padding: 15px;
+    padding: 12px;
     background: #2D2D2D;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #FFFBD4;
 }
 
 .audio-controls {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 .audio-title {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     text-align: center;
 }
 
 .audio-slider {
-    width: 90%;
-    margin: 10px 0;
+    width: 80%;
+    margin: 6px 0;
 }
 
-.audio-progress {
+.audio-progress, .audio-volume-slider {
     width: 100%;
-    height: 5px;
+    height: 4px;
     background: #444;
-    border-radius: 5px;
+    border-radius: 4px;
     outline: none;
     -webkit-appearance: none;
 }
@@ -81,15 +80,14 @@ body {
 .audio-buttons {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 6px;
 }
 
 .play-pause {
     background: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 18px;
     color: #FFFBD4;
     cursor: pointer;
     transition: color 0.3s;
@@ -100,30 +98,13 @@ body {
 }
 
 .audio-volume {
-    width: 100px;
+    width: 70px;
 }
 
-.audio-volume-slider {
-    width: 100%;
-    height: 5px;
-    background: #444;
-    border-radius: 5px;
-    outline: none;
-    -webkit-appearance: none;
-}
-
-.audio-volume-slider::-webkit-slider-thumb {
-    width: 12px;
-    height: 12px;
-    background: #FFFBD4;
-    border-radius: 50%;
-    cursor: pointer;
-    -webkit-appearance: none;
-}
-
+.audio-volume-slider::-webkit-slider-thumb, 
 .audio-volume-slider::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background: #FFFBD4;
     border-radius: 50%;
     cursor: pointer;
@@ -146,6 +127,7 @@ body {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    text-align: center; /* Ensure text is centered */
 }
 
 /* Zoom effect on hover */
@@ -154,54 +136,34 @@ body {
     background-color: #3e3e3e;
 }
 
-
-
-/* Base styles for timer */
-.timer {
-    font-size: 10px; /* This is probably too small for mobile */
-    margin-top: 5px;
-    margin-bottom: 30px;
-    color: #FFFBD4;
-    background-color: #2D2D2D;
-    padding: 0px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Zoom effect on hover */
-.timer:hover {
-    transform: scale(1.05); /* Slight zoom-in effect */
-    background-color: #3e3e3e;
-}
-
-/* Title Styling */
 .timer-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #FFFBD4;
-    margin-top: 30px;
+    font-size: 20px; /* Smaller title font size */
+    margin-bottom: 8px; /* Adjust space between title and units */
 }
 
-/* Unit Container for Days, Hours, Minutes, Seconds */
+/* Styling unit container for centering */
 .timer .unit-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack number above text */
+    justify-content: center; /* Center the units horizontally */
     align-items: center;
-    margin: 12px;
+    margin: 6px auto; /* Adjusted margin for more space */
 }
 
-/* Number Styling */
+/* Styling each unit (minutes, seconds, etc.) */
 .timer .unit-container span {
-    font-size: 20px;
+    font-size: 22px; /* Smaller number font size */
     color: #FFFBD4;
-    margin-top: 4px;
+    margin-bottom: 4px; /* Reduced space between number and label */
 }
+
+/* Styling for the text below the number (like "minutes", "seconds") */
+.timer .unit-container p {
+    font-size: 12px; /* Smaller font size for text */
+    color: #FFFBD4;
+    margin-top: 2px; /* Reduced space between number and label */
+}
+
 
 h1 {
     margin-top: 30px;
@@ -213,25 +175,44 @@ h1 {
         width: 90%;
         height: 450px;
     }
-    .timer {
-        font-size: 30px; /* Set font-size of entire timer container */
+    .audio-player {
+        max-width: 90%;
         padding: 8px;
     }
+
+    .audio-title {
+        font-size: 12px;
+    }
+
+    .audio-slider {
+        width: 75%;
+    }
+
+    .play-pause {
+        font-size: 16px;
+    }
+    .timer {
+        font-size: 18px; /* Slightly smaller font on mobile */
+        padding: 6px;
+    }
+
     .timer-title {
-        font-size: 24px; /* Adjust title for mobile */
+        font-size: 18px; /* Adjust title font size for mobile */
     }
+
     .timer .unit-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 8px;
+        margin: 6px auto; /* More space for units on mobile */
+        flex-direction: column; /* Keep stacking on mobile */
     }
-    
-    /* Number Styling */
+
     .timer .unit-container span {
-        font-size: 25px; /* Increase the number font size */
-        color: #FFFBD4;
-        margin-top: 2px;
+        font-size: 20px; /* Smaller numbers for mobile */
+        margin-bottom: 6px; /* Slightly larger space between number and label */
+    }
+
+    .timer .unit-container p {
+        font-size: 10px; /* Smaller text on mobile */
+        margin-top: 4px; /* Adjusted space between number and text */
     }
     h1 {
         font-size: 24px;
