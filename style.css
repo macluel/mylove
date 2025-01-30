@@ -6,6 +6,7 @@
 
 body {
     font-family: Montserrat, sans-serif;
+    color: white;
     background-color: #090614;
     text-align: center;
     display: flex;
@@ -91,13 +92,86 @@ input:focus, textarea:focus {
     border-color: #555;
 }
 
+/* New Timer Design */
 .timer {
-    font-size: 3rem;  /* Adjust font size */
-    color: #333;      /* Text color */
-    background-color: #fff;  /* Background color for the timer */
-    padding: 10px;
-    border-radius: 10px;  /* Rounded corners */
-    border: 2px solid #555;  /* Border color */
+    font-family: 'Montserrat', sans-serif;  /* Consistent with the rest of the page */
+    font-size: 4rem;  /* Large font size for impact */
+    color: #fff;  /* White text for high contrast */
+    background: linear-gradient(145deg, #1e2a47, #3d4f91);  /* Beautiful gradient from dark to light blue */
+    padding: 30px;
+    border-radius: 20px;  /* Soft rounded corners */
+    border: none;  /* Removed hard border for a cleaner look */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);  /* Soft shadow for depth */
+    display: flex;
+    justify-content: space-around;  /* Space out the timer units */
+    align-items: center;  /* Center items vertically */
+    margin-top: 50px;
+    max-width: 900px;  /* Max width to keep things proportional */
+    width: 90%;
+    transition: all 0.3s ease-in-out;  /* Smooth transition for hover effects */
+}
+
+.unit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.unit-container span {
+    font-size: 1.5rem;
+    color: #d1d1d1;  /* Lighter gray for the labels */
+    text-transform: uppercase;  /* Uppercase for the unit names */
+    letter-spacing: 2px;  /* Some spacing for a more elegant feel */
+}
+
+#timer-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d1d1d1;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.timer:hover {
+    transform: scale(1.05);  /* Slight zoom-in effect on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);  /* Deeper shadow for a 'lifted' look */
+    cursor: pointer;  /* Pointer cursor to indicate it's clickable */
+}
+
+.timer span {
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;  /* White for the time values */
+}
+
+/* Animation for numbers updating */
+@keyframes timer-update {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.unit-container span {
+    animation: timer-update 0.5s ease-out forwards;  /* Animation for when numbers change */
+}
+
+@media (max-width: 768px) {
+    .timer {
+        font-size: 3rem;  /* Adjust for smaller screens */
+        flex-direction: column;  /* Stack units on top of each other */
+        padding: 20px;
+    }
+
+    .unit-container {
+        margin-bottom: 15px;
+    }
 }
 
 @media (max-width: 200px) {
