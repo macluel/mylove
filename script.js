@@ -13,24 +13,20 @@ function shuffleSlides() {
 
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
+
+    // Hide all slides
     for (let i = 0; i < slides.length; i++) {
         slides[i].classList.remove("active");
     }
 
+    // Show the next slide in the shuffled order
     slideIndex++;
-    if (slideIndex > randomOrder.length) {
-        slideIndex = 1;
+    if (slideIndex >= randomOrder.length) {
+        slideIndex = 0;
     }
 
-    randomOrder[slideIndex - 1].classList.add("active");
+    randomOrder[slideIndex].classList.add("active");
 }
-
-window.onload = function() {
-    shuffleSlides();
-    showSlides();
-};
-
-setInterval(showSlides, 3000);
 
 const timerData = [
     { title: "Começamos a namorar", startDate: "January 19, 2025 00:00:00" },
@@ -66,4 +62,7 @@ function cycleTimer() {
 // Ensure the timer is updated when the page loads
 window.addEventListener("load", function() {
     updateTimer(currentTimer);
+    shuffleSlides();
+    showSlides(); // Ensure the first slide appears
+    setInterval(showSlides, 3000); // Start interval only after first slide is shown
 });
