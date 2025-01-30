@@ -1,3 +1,4 @@
+/* Updated CSS */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +7,7 @@
 
 body {
     font-family: Montserrat, sans-serif;
-    color: #B2A4D4; /* Text color changed to a light lavender shade that fits with the dark background */
+    color: #B2A4D4;
     background-color: #090614;
     text-align: center;
     display: flex;
@@ -28,13 +29,13 @@ header {
 
 img {
     width: 100%;
-    max-width: 250px;  /* Slightly adjusted image size */
+    max-width: 300px;  /* Increased max width slightly */
     height: auto;
     margin: 20px 0;
 }
 
 h1 {
-    font-size: 2.5rem; /* Smaller heading size */
+    font-size: 2rem;
     margin-top: 20px;
     color: #B2A4D4;
 }
@@ -97,20 +98,21 @@ input:focus, textarea:focus {
 /* Adjusted Timer Design */
 .timer {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;  /* Reduced font size */
+    font-size: 2rem;  /* Reduced font size */
     color: #B2A4D4;
-    background: linear-gradient(145deg, #1e2a47, #3d4f91);  /* Gradient background */
-    padding: 20px;
-    border-radius: 20px;
+    background: linear-gradient(145deg, #1e2a47, #3d4f91);
+    padding: 15px;
+    border-radius: 15px;
     border: none;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    max-width: 600px;  /* Adjust max width to avoid excessive size */
-    width: 100%;
+    max-width: 500px;  /* Adjusted max width */
+    width: 90%;  /* Make it responsive */
     transition: all 0.3s ease-in-out;
-    margin-top: 40px;
+    margin-top: 20px;
+    overflow: hidden; /* Ensure it doesn't overflow */
 }
 
 .unit-container {
@@ -120,17 +122,17 @@ input:focus, textarea:focus {
 }
 
 .unit-container span {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #d1d1d1;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 #timer-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #d1d1d1;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -142,58 +144,20 @@ input:focus, textarea:focus {
 }
 
 .timer span {
-    font-size: 3.5rem;
+    font-size: 2.5rem;  /* Reduced font size */
     font-weight: bold;
     letter-spacing: 1px;
     color: #fff;
 }
 
-/* Animation for numbers updating */
-@keyframes timer-update {
-    0% {
-        transform: scale(0.8);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.unit-container span {
-    animation: timer-update 0.5s ease-out forwards;
-}
-
 @media (max-width: 768px) {
     .timer {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
         flex-direction: column;
-        padding: 20px;
+        padding: 15px;
     }
 
     .unit-container {
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 200px) {
-    body {
-        padding: 10px;
-    }
-
-    header {
-        font-size: 1.5rem;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    img {
-        max-width: 90%;
-    }
-
-    footer {
-        font-size: 1rem;
+        margin-bottom: 10px;
     }
 }
