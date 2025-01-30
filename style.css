@@ -1,6 +1,6 @@
-/* General Styles */
+/* Basic Styling */
 body {
-    font-family: 'Montserrat', serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #090614; /* Original background color */
@@ -8,98 +8,115 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-h1, h2 {
-    text-align: center;
+/* Timer Styling */
+#timer {
+    font-size: 30px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    padding: 5%;
 }
 
-/* Slideshow Styles */
-.slideshow-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden; /* Prevent image overflow */
+#timer-title {
+    font-size: 36px; /* Title font size */
+    font-weight: 100;
 }
 
+.unit-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.unit-container span {
+    font-size: 40px;
+    margin: 0 10px;
+}
+
+.timer {
+    font-weight: 600;
+    font-size: 50px; /* Adjusted for better visibility */
+    margin-top: 5px;
+}
+
+.timer span {
+    font-weight: 300;
+}
+
+#timer .fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+#timer .fade-out {
+    animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Slideshow Styling */
 .slides {
-    display: none;
+    position: relative;
     width: 100%;
-    height: auto;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.slides.active {
-    display: block;
-}
-
-/* Prevent images from resizing unpredictably */
 .slides img {
     width: 100%; /* Image width will take full width of container */
     height: auto; /* Maintain aspect ratio */
-    max-height: 300px; /* Adjust this number to fit your layout */
     object-fit: cover; /* Ensure the image covers the container */
     display: block; /* Remove any space below the image */
     margin: 0 auto; /* Center the image */
 }
 
-/* Timer Styles */
-#timer-container {
-    margin-top: 40px;
-    text-align: center;
-}
-
-.timer {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    background-color: #444; /* Slightly lighter background for the timer */
-    border-radius: 10px;
-}
-
-.unit-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.unit-container span {
-    font-size: 20px;
-    font-weight: bold; /* Ensures the text is more prominent */
-}
-
-/* Fade Effects */
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-}
-
-/* Timer Title Fix */
-#timer-title {
-    font-family: 'Montserrat', serif;
-    font-size: 34px; /* You can change the font size here */
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-/* Timer Title Responsiveness */
-@media screen and (max-width: 768px) {
-    #timer-title {
-        font-size: 34px; /* Smaller font size for mobile */
+/* Animations */
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 
-/* Timer Number Styles */
-.unit-container span {
-    font-size: 22px; /* Increase font size for numbers */
-    font-weight: bold;
-    padding: 5px 0;
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
-/* Timer Title Fix (Additional if needed) */
-.timer-title {
-    font-size: 30px;
-    font-weight: bold;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #timer-title {
+        font-size: 28px; /* Adjust font size for mobile screens */
+    }
+
+    .unit-container span {
+        font-size: 18px; /* Smaller font size for timer numbers */
+    }
+
+    .timer {
+        font-size: 40px; /* Adjusted for mobile screen visibility */
+    }
 }
