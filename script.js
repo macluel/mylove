@@ -1,6 +1,7 @@
 let slideIndex = 0;
 let randomOrder = [];
 
+// Shuffle function for slides
 function shuffleSlides() {
     let slides = Array.from(document.getElementsByClassName("slides"));
     randomOrder = [];
@@ -17,6 +18,7 @@ function shuffleSlides() {
     });
 }
 
+// Show next slide in shuffled order
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
 
@@ -102,13 +104,46 @@ function cycleTimer() {
 setInterval(showSlides, 3000); // Every 3 seconds
 
 // Ensure the timer is updated when the page loads
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     updateTimer(currentTimer);
     shuffleSlides();
     showSlides(); // Ensure the first slide appears
     setInterval(showSlides, 3000); // Start interval only after first slide is shown
     setInterval(() => updateTimer(currentTimer), 1000); // Update the timer every second
-    var audio = document.getElementById("myAudio");
+
+    // Audio control functionality
+    let audio = document.getElementById('myAudio');
+    let playPauseButton = document.querySelector('.play-pause');
+    let progressSlider = document.querySelector('.audio-progress');
+    let volumeSlider = document.querySelector('.audio-volume-slider');
+
+    // Play/Pause button functionality
+    playPauseButton.addEventListener('click', function () {
+        if (audio.paused) {
+            audio.play();
+            playPauseButton.innerHTML = '❚❚';  // Change button to pause
+        } else {
+            audio.pause();
+            playPauseButton.innerHTML = '▶';  // Change button to play
+        }
+    });
+
+    // Update progress bar as audio plays
+    audio.addEventListener('timeupdate', function () {
+        let progress = (audio.currentTime / audio.duration) * 100;
+        progressSlider.value = progress;
+    });
+
+    // Make progress bar clickable
+    progressSlider.addEventListener('input', function () {
+        let seekTo = (progressSlider.value / 100) * audio.duration;
+        audio.currentTime = seekTo;
+    });
+
+    // Volume control functionality
+    volumeSlider.addEventListener('input', function () {
+        audio.volume = volumeSlider.value / 100;
+    });
+
     audio.volume = 0.1;  // Set volume to 20%
 });
-
