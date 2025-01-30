@@ -29,7 +29,7 @@ header {
 
 img {
     width: 100%;
-    max-width: 350px;  /* Increased max width slightly */
+    max-width: 500px;  /* Increased max width slightly */
     height: auto;
     margin: 20px 0;
 }
@@ -98,7 +98,7 @@ input:focus, textarea:focus {
 /* Adjusted Timer Design */
 .timer {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;  /* Reduced font size */
+    font-size: 1.2rem;  /* Reduced font size */
     color: #B2A4D4;
     background: linear-gradient(145deg, #1e2a47, #3d4f91);
     padding: 15px;
@@ -130,7 +130,7 @@ input:focus, textarea:focus {
 
 #timer-title {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: normal;
     color: #d1d1d1;
     margin-bottom: 25px; /* Increased spacing */
     letter-spacing: 2px;
@@ -150,7 +150,7 @@ input:focus, textarea:focus {
     color: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 400px) {
     .timer {
         font-size: 1.5rem;
         flex-direction: column;
