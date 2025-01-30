@@ -62,3 +62,8 @@ function cycleTimer() {
     currentTimer = (currentTimer + 1) % timerData.length;
     updateTimer(currentTimer);
 }
+
+// Ensure the timer is updated when the page loads
+window.addEventListener("load", function() {
+    updateTimer(currentTimer);
+});
