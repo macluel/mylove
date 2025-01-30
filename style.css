@@ -28,8 +28,8 @@ header {
 
 img {
     width: 100%;
-    max-width: 200px;  /* Keeps the image from stretching beyond a certain size */
-    height: auto;      /* Maintains the aspect ratio of the image */
+    max-width: 300px;  /* Increase the size of the image */
+    height: auto;      /* Maintain aspect ratio */
     margin: 20px 0;
 }
 
@@ -92,23 +92,24 @@ input:focus, textarea:focus {
     border-color: #555;
 }
 
-/* New Timer Design */
+/* Adjusted Timer Design */
 .timer {
-    font-family: 'Montserrat', sans-serif;  /* Consistent with the rest of the page */
-    font-size: 4rem;  /* Large font size for impact */
-    color: #fff;  /* White text for high contrast */
-    background: linear-gradient(145deg, #1e2a47, #3d4f91);  /* Beautiful gradient from dark to light blue */
+    font-family: 'Montserrat', sans-serif;  
+    font-size: 3rem;  /* Adjust font size to be more proportional */
+    color: #B2A4D4;  /* Changed text color to a lavender shade that complements #090614 */
+    background: linear-gradient(145deg, #1e2a47, #3d4f91);  /* Gradient background */
     padding: 30px;
-    border-radius: 20px;  /* Soft rounded corners */
-    border: none;  /* Removed hard border for a cleaner look */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);  /* Soft shadow for depth */
+    border-radius: 20px;  
+    border: none;  
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);  
     display: flex;
-    justify-content: space-around;  /* Space out the timer units */
-    align-items: center;  /* Center items vertically */
-    margin-top: 50px;
-    max-width: 900px;  /* Max width to keep things proportional */
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;  /* Added margin to create space from text */
+    max-width: 900px;  
     width: 90%;
-    transition: all 0.3s ease-in-out;  /* Smooth transition for hover effects */
+    transition: all 0.3s ease-in-out;  
+    margin-bottom: 30px;  /* Added some bottom margin */
 }
 
 .unit-container {
@@ -119,9 +120,9 @@ input:focus, textarea:focus {
 
 .unit-container span {
     font-size: 1.5rem;
-    color: #d1d1d1;  /* Lighter gray for the labels */
-    text-transform: uppercase;  /* Uppercase for the unit names */
-    letter-spacing: 2px;  /* Some spacing for a more elegant feel */
+    color: #d1d1d1;  
+    text-transform: uppercase;  
+    letter-spacing: 2px;  
 }
 
 #timer-title {
@@ -134,16 +135,16 @@ input:focus, textarea:focus {
 }
 
 .timer:hover {
-    transform: scale(1.05);  /* Slight zoom-in effect on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);  /* Deeper shadow for a 'lifted' look */
-    cursor: pointer;  /* Pointer cursor to indicate it's clickable */
+    transform: scale(1.05);  
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);  
+    cursor: pointer;  
 }
 
 .timer span {
     font-size: 3.5rem;
     font-weight: bold;
     letter-spacing: 1px;
-    color: #fff;  /* White for the time values */
+    color: #fff;  
 }
 
 /* Animation for numbers updating */
@@ -159,13 +160,13 @@ input:focus, textarea:focus {
 }
 
 .unit-container span {
-    animation: timer-update 0.5s ease-out forwards;  /* Animation for when numbers change */
+    animation: timer-update 0.5s ease-out forwards;
 }
 
 @media (max-width: 768px) {
     .timer {
-        font-size: 3rem;  /* Adjust for smaller screens */
-        flex-direction: column;  /* Stack units on top of each other */
+        font-size: 2.5rem;  
+        flex-direction: column;  
         padding: 20px;
     }
 
