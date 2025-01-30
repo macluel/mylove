@@ -53,13 +53,31 @@
 
     <div></div>
     
-    <!-- Background music -->
+    <div class="audio-player">
+        <div class="player-content">
+            <div class="audio-controls">
+                <div class="audio-title">Ainda Bem</div>
+                <div class="audio-slider">
+                    <input type="range" class="audio-progress" value="0" max="100" />
+                </div>
+                <div class="audio-buttons">
+                    <button class="play-pause">
+                        <span class="play-icon">▶</span>
+                    </button>
+                    <div class="audio-volume">
+                        <input type="range" class="audio-volume-slider" value="100" max="100" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Source -->
     <audio id="myAudio" autoplay loop>
         <source src="assets/songs/ainda_bem.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
-    
     <!-- Timer Section -->
     <div id="timer-container">
         <div id="timer-title" class="timer-title">Começamos a namorar</div>
