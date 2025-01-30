@@ -1,43 +1,44 @@
 let slideIndex = 0;
+let randomOrder = []; // Array to store the random order of slides
 
-// Function to shuffle the slides randomly
+// Function to shuffle and get a random order for the slides
 function shuffleSlides() {
     let slides = Array.from(document.getElementsByClassName("slides"));
-    for (let i = slides.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [slides[i], slides[j]] = [slides[j], slides[i]]; // Swap elements
+    randomOrder = [];
+
+    // Shuffle the slides and store them in randomOrder
+    while (slides.length > 0) {
+        let randomIndex = Math.floor(Math.random() * slides.length);
+        randomOrder.push(slides.splice(randomIndex, 1)[0]);
     }
-    return slides;
 }
 
-// Function to show the slides
+// Function to show the slides based on the random order
 function showSlides() {
-    let slides = shuffleSlides(); // Get the shuffled slides
-    
     // Hide all slides initially
+    let slides = document.getElementsByClassName("slides");
     for (let i = 0; i < slides.length; i++) {
         slides[i].classList.remove("active");
     }
-    
+
     // Increment slide index, if it exceeds the total, reset to 1
     slideIndex++;
-    if (slideIndex > slides.length) {
+    if (slideIndex > randomOrder.length) {
         slideIndex = 1;
     }
 
-    // Show the current slide
-    slides[slideIndex - 1].classList.add("active");
-
-    // Random delay between 2 and 5 seconds for next slide transition
-    let randomDelay = Math.floor(Math.random() * (5000 - 2000 + 1)) + 2000; // Random delay between 2000ms and 5000ms
-    setTimeout(showSlides, randomDelay); // Use the random delay for the next slide transition
+    // Show the current slide from the random order
+    randomOrder[slideIndex - 1].classList.add("active");
 }
 
-// Start the slideshow and update timer on load
+// Start the slideshow on page load
 window.onload = function() {
-    showSlides(); // Start the slideshow
-    updateTimer(0); // Start with the first timer
+    shuffleSlides(); // Shuffle the slides when the page loads
+    showSlides(); // Start the slideshow with the shuffled order
 };
+
+// Initialize the slideshow with setInterval (every 3 seconds)
+setInterval(showSlides, 3000); // Every 3 seconds
 
 // Timer data
 const timerData = [
@@ -102,6 +103,3 @@ function cycleTimer() {
     currentTimer = (currentTimer + 1) % timerData.length;
     updateTimer(currentTimer); // Update the timer display
 }
-
-// Initialize the slideshow with setInterval
-setInterval(showSlides, 3000); // Every 3 seconds
