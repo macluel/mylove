@@ -13,20 +13,30 @@ h1, h2 {
 }
 
 /* Slideshow Styles */
+/* Slideshow Styles */
 .slideshow-container {
     position: relative;
     max-width: 100%;
     margin: auto;
+    overflow: hidden; /* Ensures no overflow of images */
 }
 
 .slides {
     display: none;
     width: 100%;
     height: auto;
+    object-fit: cover; /* Ensures images cover the container without distortion */
 }
 
 .slides.active {
     display: block;
+}
+
+/* Prevent the images from resizing unpredictably */
+.slides img {
+    width: 100%; /* Make sure the image takes full width */
+    height: auto; /* Keep aspect ratio */
+    object-fit: cover; /* This ensures the image covers the container without distortion */
 }
 
 /* Timer Styles */
