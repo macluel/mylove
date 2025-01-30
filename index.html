@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eu te amo</title>
@@ -20,8 +20,9 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <h1 style="font-weight:normal; font-size: 36px;">Um simples presente<br><span style="font-size: 26px;">Para a dona do meu coração…</span></h1>
-
+    <h1 style="font-weight:normal; font-size: 36px;">Um simples presente</h1>
+    <h2 style="font-size: 26px;">Para a dona do meu coração…</h2>
+    
     <div class="slideshow-container">
         <img class="slides" src="assets/images/IMG1.jpg" alt="Slide 1">
         <img class="slides" src="assets/images/IMG2.jpg" alt="Slide 2">
@@ -44,38 +45,47 @@
         <img class="slides" src="assets/images/IMG19.jpg" alt="Slide 19">
     </div>
 
-    <center>
-        <h1 style="font-family: 'Montserrat', serif; font-weight:400; max-width:380px; word-wrap:break-word; font-size: 20px;">
-            Você chegou como quem não queria nada, e se tornou uma das melhores surpresas da minha vida.
-        </h1>
-        <h1 style="font-family: 'Montserrat', serif; font-weight:600; max-width:400px; word-wrap:break-word; padding-bottom: 20px; font-size: 18px;">
-            Espero poder te fazer MUITO feliz por MUITO tempo ainda minha princesa.
-        </h1>
-        <h1 style="font-family: 'Montserrat', serif; font-size: 40px; font-weight:100;">TE AMO DEMAIS<br>MINHA PRINCESA</h1>
-    </center>
+    <center><h3 style="font-family: 'Montserrat', serif; font-weight:400;max-width:380px; word-wrap:break-word; font-size: 20px;">Você chegou como quem não queria nada, e se tornou uma das melhores surpresas da minha vida.</h3>
+    <h3 style="font-family: 'Montserrat', serif; font-weight:600;max-width:400px; word-wrap:break-word; padding-bottom: 20px; font-size: 18px;">Espero poder te fazer MUITO feliz por MUITO tempo ainda minha princesa.</h3>
+    <h3 style="font-family: 'Montserrat', serif; font-size: 40px; font-weight:600;">TE AMO DEMAIS<br>MINHA PRINCESA</h3>
 
+
+
+    <div></div>
+    
+    <!-- Background music -->
+    <audio autoplay loop>
+        <source src="assets/songs/ainda_bem.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
     <!-- Timer Section -->
     <div id="timer-container">
-    <div id="timer-title">Começamos a namorar</div>
-    <div id="timer" class="timer" onclick="cycleTimer()">
-        <div class="unit-container">
-            <span id="days-number">0</span>
-            <span>Days</span>
-        </div>
-        <div class="unit-container">
-            <span id="hours-number">0</span>
-            <span>Hours</span>
-        </div>
-        <div class="unit-container">
-            <span id="minutes-number">0</span>
-            <span>Minutes</span>
-        </div>
-        <div class="unit-container">
-            <span id="seconds-number">0</span>
-            <span>Seconds</span>
+        <div id="timer-title" class="timer-title">Começamos a namorar</div>
+        <div id="timer" class="timer" onclick="cycleTimer()"> 
+            <div class="unit-container">
+                <span id="days-number">0</span>
+                <span>Days</span>
+            </div>
+            <div class="unit-container">
+                <span id="hours-number">0</span>
+                <span>Hours</span>
+            </div>
+            <div class="unit-container">
+                <span id="minutes-number">0</span>
+                <span>Minutes</span>
+            </div>
+            <div class="unit-container">
+                <span id="seconds-number">0</span>
+                <span>Seconds</span>
+            </div>
         </div>
     </div>
-</div>
+
+      
+    <h1></h1>
+
+    <h2></h2>
 
 </body>
 </html>
