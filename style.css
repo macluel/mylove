@@ -1,131 +1,131 @@
-body {
-    font-family: 'Montserrat', serif;
-    color: #FFFBD4;
-    text-align: center;
-    background-color: #090614;
-}
+    body {
+        font-family: 'Montserrat', serif;
+        color: #FFFBD4;
+        text-align: center;
+        background-color: #090614;
+    }
 
-.slideshow-container {
-    width: 380px; /* Set the width of the container */
-    height: 676px; /* Set the height of the container */
-    margin: auto;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.slides {
-    width: 100%; /* Ensure the image scales to fit the width */
-    height: 100%; /* Ensure the image scales to fit the height */
-    object-fit: cover; /* The image will cover the container and may get cropped */
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0; /* Initially hide the slides */
-    transition: opacity 1s ease-in-out; /* Smooth fade transition */
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-}
-
-.slides.active {
-    opacity: 1; /* Show the active slide */
-}
-
-/* Background music */
-audio {
-    display: none; /* Hides the audio player */
-}
-
-/* Timer Container */
-.timer {
-    font-size: 10px;
-    margin-top: 5px;
-    margin-bottom: 30px;
-    color: #FFFBD4;
-    background-color: #2D2D2D;
-    padding: 0px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Zoom effect on hover */
-.timer:hover {
-    transform: scale(1.05); /* Slight zoom-in effect */
-    background-color: #3e3e3e;
-}
-
-/* Title Styling */
-.timer-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #F0F0F0;
-    margin-top: 30px;
-}
-
-/* Unit Container for Days, Hours, Minutes, Seconds */
-.timer .unit-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 12px;
-}
-
-/* Number Styling */
-.timer .unit-container span {
-    font-size: 20px;
-    color: #F0F0F0;
-    margin-top: 4px;
-}
-
-h1 {
-    margin-top: 30px;
-}
-
-/* Mobile-friendly adjustments */
-@media (max-width: 600px) {
     .slideshow-container {
-        width: 90%;
-        height: 450px;
+        width: 380px; /* Set the width of the container */
+        height: 676px; /* Set the height of the container */
+        margin: auto;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
     }
+
+    .slides {
+        width: 100%; /* Ensure the image scales to fit the width */
+        height: 100%; /* Ensure the image scales to fit the height */
+        object-fit: cover; /* The image will cover the container and may get cropped */
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0; /* Initially hide the slides */
+        transition: opacity 1s ease-in-out; /* Smooth fade transition */
+    }
+
+    .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .slides.active {
+        opacity: 1; /* Show the active slide */
+    }
+
+    /* Background music */
+    audio {
+        display: none; /* Hides the audio player */
+    }
+
+    /* Timer Container */
     .timer {
-        font-size: 20px; /* Adjust for mobile */
-        padding: 8px;
+        font-size: 10px;
+        margin-top: 5px;
+        margin-bottom: 30px;
+        color: #FFFBD4;
+        background-color: #2D2D2D;
+        padding: 0px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        cursor: pointer;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
     }
+
+    /* Zoom effect on hover */
+    .timer:hover {
+        transform: scale(1.05); /* Slight zoom-in effect */
+        background-color: #3e3e3e;
+    }
+
+    /* Title Styling */
     .timer-title {
-        font-size: 8px; /* Adjust title for mobile */
+        font-size: 30px;
+        font-weight: bold;
+        color: #F0F0F0;
+        margin-top: 30px;
     }
+
+    /* Unit Container for Days, Hours, Minutes, Seconds */
     .timer .unit-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 8px;
+        margin: 12px;
     }
-    
+
     /* Number Styling */
     .timer .unit-container span {
-        font-size: 10px;
-        color: #F0F0F0;
-        margin-top: 2px;
-    }
-    h1 {
-        font-size: 24px;
-    }
-    h2 {
         font-size: 20px;
+        color: #F0F0F0;
+        margin-top: 4px;
     }
-    
-}
+
+    h1 {
+        margin-top: 30px;
+    }
+
+    /* Mobile-friendly adjustments */
+    @media (max-width: 600px) {
+        .slideshow-container {
+            width: 90%;
+            height: 450px;
+        }
+        .timer {
+            font-size: 30px; /* Adjust for mobile */
+            padding: 8px;
+        }
+        .timer-title {
+            font-size: 24px; /* Adjust title for mobile */
+        }
+        .timer .unit-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 8px;
+        }
+        
+        /* Number Styling */
+        .timer .unit-container span {
+            font-size: 10px;
+            color: #F0F0F0;
+            margin-top: 2px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        
+    }
