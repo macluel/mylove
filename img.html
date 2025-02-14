@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <style>
         #photoGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); /* Smaller width to fit more images horizontally */
+    gap: 5px; /* Reduce spacing between images */
+    justify-content: center; /* Center the grid */
+    padding: 5px; /* Reduced padding for a tighter fit */
+}
+
+img {
+    width: 72px;  /* Fixed width */
+    height: 128px; /* Fixed height */
+    object-fit: cover; /* Ensures no distortion, only cropping */
+    border-radius: 10px;
+}
     </style>
 </head>
 <body>
