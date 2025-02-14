@@ -12,6 +12,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .slides {
