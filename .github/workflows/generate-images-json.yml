@@ -1,0 +1,39 @@
+name: Generate Images JSON
+
+on:
+  push:
+    paths:
+      - 'assets/images/**'
+
+jobs:
+  generate_json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate images.json
+        run: |
+          # Get all image files in the folder
+          FILES=$(find assets/images -type f -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png")
+
+          # Start the JSON array
+          echo '{ "images": [' > assets/images/images.json
+          
+          # Loop through files and add them to JSON
+          for file in $FILES; do
+            echo "  \"$(basename $file)\"," >> assets/images/images.json
+          done
+          
+          # Remove last comma and close JSON properly
+          sed -i '$ s/,$//' assets/images/images.json
+          echo '] }' >> assets/images/images.json
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add assets/images/images.json
+          git commit -m "Update images.json" || echo "No changes to commit"
+          git push || echo "No changes to push"
