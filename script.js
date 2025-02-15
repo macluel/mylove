@@ -1,40 +1,51 @@
+const slideshowContainer = document.getElementById("slideshow");
+const totalImages = 20; // Adjust based on the number of images you have
+const folderPath = "assets/images/";
+
+// Generate the slides dynamically
+for (let i = 1; i <= totalImages; i++) {
+    const img = document.createElement("img");
+    img.className = "slides";
+    img.src = `${folderPath}IMG${i}.jpg`;
+    img.alt = `Slide ${i}`;
+    slideshowContainer.appendChild(img);
+}
+
+// Variables for slideshow
 let slideIndex = 0;
 let randomOrder = [];
 
-// Shuffle function for slides
+// Fisher-Yates shuffle function
 function shuffleSlides() {
     let slides = Array.from(document.getElementsByClassName("slides"));
-    randomOrder = [];
-
-    while (slides.length > 0) {
-        let randomIndex = Math.floor(Math.random() * slides.length);
-        randomOrder.push(slides.splice(randomIndex, 1)[0]);
+    for (let i = slides.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [slides[i], slides[j]] = [slides[j], slides[i]]; // Swap elements
     }
-
-    // Reattach the slides in shuffled order
-    const slideshowContainer = document.querySelector(".slideshow-container");
-    randomOrder.forEach(slide => {
-        slideshowContainer.appendChild(slide);
-    });
+    randomOrder = slides;
+    randomOrder.forEach(slide => slideshowContainer.appendChild(slide));
 }
 
-// Show next slide in shuffled order
+// Show slides in shuffled order
 function showSlides() {
     let slides = document.getElementsByClassName("slides");
-
+    
     // Hide all slides
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");
+    for (let slide of slides) {
+        slide.classList.remove("active");
     }
 
-    // Show the next slide in the shuffled order
-    slideIndex++;
-    if (slideIndex >= randomOrder.length) {
-        slideIndex = 0;
-    }
-
+    // Show next slide
+    slideIndex = (slideIndex + 1) % randomOrder.length;
     randomOrder[slideIndex].classList.add("active");
 }
+
+// Start slideshow on page load
+window.addEventListener("load", function () {
+    shuffleSlides();
+    showSlides();
+    setInterval(showSlides, 3000); // Change slides every 3 seconds
+});
 
 // Timer data
 const timerData = [
@@ -100,50 +111,48 @@ function cycleTimer() {
     updateTimer(currentTimer); // Update the timer display
 }
 
-// Initialize the slideshow with setInterval
-setInterval(showSlides, 3000); // Every 3 seconds
-
 // Ensure the timer is updated when the page loads
 window.addEventListener("load", function () {
     updateTimer(currentTimer);
-    shuffleSlides();
-    showSlides(); // Ensure the first slide appears
-    setInterval(showSlides, 3000); // Start interval only after first slide is shown
     setInterval(() => updateTimer(currentTimer), 1000); // Update the timer every second
-
-    // Audio control functionality
-    let audio = document.getElementById('myAudio');
-    let playPauseButton = document.querySelector('.play-pause');
-    let progressSlider = document.querySelector('.audio-progress');
-    let volumeSlider = document.querySelector('.audio-volume-slider');
-
-    // Play/Pause button functionality
-    playPauseButton.addEventListener('click', function () {
-        if (audio.paused) {
-            audio.play();
-            playPauseButton.innerHTML = '❚❚';  // Change button to pause
-        } else {
-            audio.pause();
-            playPauseButton.innerHTML = '▶';  // Change button to play
-        }
-    });
-
-    // Update progress bar as audio plays
-    audio.addEventListener('timeupdate', function () {
-        let progress = (audio.currentTime / audio.duration) * 100;
-        progressSlider.value = progress;
-    });
-
-    // Make progress bar clickable
-    progressSlider.addEventListener('input', function () {
-        let seekTo = (progressSlider.value / 100) * audio.duration;
-        audio.currentTime = seekTo;
-    });
-
-    // Volume control functionality
-    volumeSlider.addEventListener('input', function () {
-        audio.volume = volumeSlider.value / 100;
-    });
-
-    audio.volume = 0.1;  // Set volume to 20%
+    setInterval(cycleTimer, 10000); // Change timer every 10 seconds
+    setInterval(showSlides, 3000); // Start interval only after first slide is shown
 });
+
+// Audio control functionality
+let audio = document.getElementById('myAudio');
+let playPauseButton = document.querySelector('.play-pause');
+let progressSlider = document.querySelector('.audio-progress');
+let volumeSlider = document.querySelector('.audio-volume-slider');
+
+// Play/Pause button functionality
+playPauseButton.addEventListener('click', function () {
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.innerHTML = '❚❚';  // Change button to pause
+    } else {
+        audio.pause();
+        playPauseButton.innerHTML = '▶';  // Change button to play
+    }
+});
+
+// Update progress bar as audio plays
+audio.addEventListener('timeupdate', function () {
+    let progress = (audio.currentTime / audio.duration) * 100;
+    progressSlider.value = progress;
+});
+
+// Make progress bar clickable
+progressSlider.addEventListener('input', function () {
+    let seekTo = (progressSlider.value / 100) * audio.duration;
+    audio.currentTime = seekTo;
+});
+
+// Volume control functionality
+volumeSlider.addEventListener('input', function () {
+    audio.volume = volumeSlider.value / 100;
+});
+
+audio.volume = 0.1;  // Set volume to 10%
+// Set volume slider to match the volume
+volumeSlider.value = 10;  // Set slider to match the default volume
