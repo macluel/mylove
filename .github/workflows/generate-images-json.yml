@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'assets/images/**'
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   generate_json:
@@ -13,20 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Ensure images folder exists
+        run: mkdir -p assets/images
+
       - name: Generate images.json
         run: |
           # Get all image files in the folder
-          FILES=$(find assets/images -type f -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png")
+          FILES=$(ls assets/images | grep -E "\.(jpg|jpeg|png)$" || true)
 
-          # Start the JSON array
+          # Create the images.json file
           echo '{ "images": [' > assets/images/images.json
-          
-          # Loop through files and add them to JSON
           for file in $FILES; do
-            echo "  \"$(basename $file)\"," >> assets/images/images.json
+            echo "  \"${file}\"," >> assets/images/images.json
           done
-          
-          # Remove last comma and close JSON properly
           sed -i '$ s/,$//' assets/images/images.json
           echo '] }' >> assets/images/images.json
 
