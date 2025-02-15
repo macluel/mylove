@@ -1,5 +1,5 @@
 const folderPath = "assets/images/"; // Ensure this path is correct
-const totalImages = 19; // Adjust this based on how many images you have
+const totalImages = 20; // Adjust this based on how many images you have
 const gridContainer = document.getElementById("photoGrid");
 
 for (let i = 1; i <= totalImages; i++) {
