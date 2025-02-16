@@ -1,15 +1,20 @@
 const slideshowContainer = document.getElementById("slideshow");
-const totalImages = 20; // Adjust based on the number of images you have
 const folderPath = "assets/images/";
+const jsonFile = `${folderPath}images.json`;
 
-// Generate the slides dynamically
-for (let i = 1; i <= totalImages; i++) {
-    const img = document.createElement("img");
-    img.className = "slides";
-    img.src = `${folderPath}IMG${i}.jpg`;
-    img.alt = `Slide ${i}`;
-    slideshowContainer.appendChild(img);
-}
+// Fetch images.json dynamically
+fetch(jsonFile)
+  .then(response => response.json())
+  .then(data => {
+    data.images.forEach(imageName => {
+        const img = document.createElement("img");
+        img.className = "slides";
+        img.src = `${folderPath}${imageName}`;
+        img.alt = `Slide ${imageName}`;
+        slideshowContainer.appendChild(img);
+    });
+  })
+  .catch(error => console.error("Error loading slideshow images:", error));
 
 // Variables for slideshow
 let slideIndex = 0;
