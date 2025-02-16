@@ -1,10 +1,18 @@
-const folderPath = "assets/images/"; // Ensure this path is correct
-const totalImages = 20; // Adjust this based on how many images you have
+const folderPath = "assets/images/";
+const jsonFile = `${folderPath}images.json`;
 const gridContainer = document.getElementById("photoGrid");
 
-for (let i = 1; i <= totalImages; i++) {
-    const img = document.createElement("img");
-    img.src = `${folderPath}IMG${i}.jpg`; // Example: IMG1.jpg, IMG2.jpg, ...
-    img.alt = `Image ${i}`;
-    gridContainer.appendChild(img);
-}
+// Fetch images.json dynamically
+fetch(jsonFile)
+  .then(response => response.json())
+  .then(data => {
+    const totalImages = data.images.length; // Get the number of images
+
+    data.images.forEach(imageName => {
+        const img = document.createElement("img");
+        img.src = `${folderPath}${imageName}`;
+        img.alt = imageName;
+        gridContainer.appendChild(img);
+    });
+  })
+  .catch(error => console.error("Error loading images:", error));
