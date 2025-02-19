@@ -1,6 +1,6 @@
 body{
     margin: 0px;
-    background-color: #1e1e1e;
+    background-color: #ffffff;
 }
 h1{
     color: white;
@@ -60,4 +60,27 @@ footer {
     position: fixed; 
     bottom: 0; 
     width: 100%; 
+}
+
+@media (max-width: 600px) {
+    .links {
+        width: 90%; /* Reduz a largura dos links no mobile */
+    }
+
+    .sites {
+        font-size: 16px; /* Ajusta o tamanho do texto para telas menores */
+        padding: 12px; /* Aumenta a área clicável */
+        width: 100%; /* Garante que os botões fiquem proporcionais */
+        box-sizing: border-box; /* Evita que o padding aumente o tamanho */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .iconimg {
+        height: 100px; /* Ajusta o tamanho do ícone no mobile */
+        border-radius: 50px;
+    }
+
+    footer {
+        position: relative; /* Evita sobreposição do footer em telas pequenas */
+    }
 }
