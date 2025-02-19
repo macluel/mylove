@@ -106,3 +106,9 @@ footer p {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* Cor quando o usuário passa o mouse sobre a parte rolável */
 }
+
+@media (max-width: 1080px) {
+    #photo {
+        margin: 0;
+        width: 110px;
+    }
