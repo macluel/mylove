@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #1A1A1A;
+    color: #FFF;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+header h2 {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Artigos empilhados verticalmente (faixa de notícia) */
+    align-items: center; /* Alinha os artigos no centro */
+    gap: 20px; /* Espaço entre os artigos */
+    margin-top: 20px;
+    padding: 0 10px; /* Adiciona um espaçamento nas laterais */
+}
+
+.article {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    padding: 15px;
+    width: 90%; /* Largura maior para os artigos, que ocupam a tela */
+    max-width: 700px; /* Largura máxima para os artigos */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+    text-align: left; /* Alinha o texto à esquerda dentro do artigo */
+}
+
+.article:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.article img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.article h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.article p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    .article {
+        width: 100%; /* Faz os artigos ocuparem toda a largura em telas pequenas */
+    }
+}
+
+footer {
+    background-color: #1A1A1A;
+    color: #FFF;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Remover o underline dos links */
+a {
+    text-decoration: none;
+    color: inherit; /* Mantém a cor do link igual ao texto ao invés do azul padrão */
+}
+
+/* Personalizar a barra de rolagem lateral */
+::-webkit-scrollbar {
+    width: 6px; /* Tamanho da barra de rolagem */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor de fundo do trilho */
+    border-radius: 10px; /* Bordas arredondadas no trilho */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Cor da parte rolável da barra */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Cor quando o usuário passa o mouse sobre a parte rolável */
+}

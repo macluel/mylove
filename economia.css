@@ -1,0 +1,103 @@
+/* Estilos gerais para os artigos */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #006767;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+header h2 {
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+/* Estilo para o header com link */
+header a {
+    text-decoration: none; /* Remove o underline */
+    color: white; /* Mantém a cor do texto branca */
+}
+
+header a:hover {
+    color: #f0f0f0; /* Cor levemente diferente no hover */
+}
+
+.article-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.article {
+    text-align: justify;
+}
+
+.article h1 {
+    font-size: 30px;
+    color: #006767;
+    margin-bottom: 20px;
+}
+
+.article p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.article img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #006767;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 30px;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* Personalizar a barra de rolagem lateral */
+::-webkit-scrollbar {
+    width: 6px; /* Tamanho da barra de rolagem */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor de fundo do trilho */
+    border-radius: 10px; /* Bordas arredondadas no trilho */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Cor da parte rolável da barra */
+    /*border-radius: 10px; /* Bordas arredondadas na parte rolável */
+    /*border: 2px solid #f1f1f1; /* Borda externa para um visual mais agradável */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Cor quando o usuário passa o mouse sobre a parte rolável */
+}
