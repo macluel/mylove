@@ -3,7 +3,7 @@ name: Generate Images JSON
 on:
   push:
     paths:
-      - 'assets/images/**'
+      - 'mylove/assets/images/**'
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
@@ -15,26 +15,26 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Ensure images folder exists
-        run: mkdir -p $GITHUB_WORKSPACE/assets/images
+        run: mkdir -p $GITHUB_WORKSPACE/mylove/assets/images
 
       - name: Generate images.json
         run: |
           # Get all image files in the folder (including subdirectories)
-          FILES=$(find $GITHUB_WORKSPACE/assets/images -type f -regex ".*\.\(jpg\|jpeg\|png\)$")
+          FILES=$(find $GITHUB_WORKSPACE/mylove/assets/images -type f -regex ".*\.\(jpg\|jpeg\|png\)$")
 
           # Create the images.json file
-          echo '{ "images": [' > $GITHUB_WORKSPACE/assets/images/images.json
+          echo '{ "images": [' > $GITHUB_WORKSPACE/mylove/assets/images/images.json
           for file in $FILES; do
-            echo "  \"${file}\"," >> $GITHUB_WORKSPACE/assets/images/images.json
+            echo "  \"${file}\"," >> $GITHUB_WORKSPACE/mylove/assets/images/images.json
           done
-          sed -i '$ s/,$//' $GITHUB_WORKSPACE/assets/images/images.json
-          echo '] }' >> $GITHUB_WORKSPACE/assets/images/images.json
+          sed -i '$ s/,$//' $GITHUB_WORKSPACE/mylove/assets/images/images.json
+          echo '] }' >> $GITHUB_WORKSPACE/mylove/assets/images/images.json
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add $GITHUB_WORKSPACE/assets/images/images.json
+          git add $GITHUB_WORKSPACE/mylove/assets/images/images.json
 
           # Commit only if changes are present
           git diff --quiet || git commit -m "Update images.json"
