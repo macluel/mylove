@@ -1,0 +1,1 @@
+const folderPath="/assets/images/",jsonFile=`${folderPath}images.json`,gridContainer=document.getElementById("photoGrid");fetch(jsonFile).then(e=>e.json()).then(e=>{e.images.forEach(e=>{let r=document.createElement("img");r.src=`${folderPath}${e}`,r.alt=e,gridContainer.appendChild(r)})}).catch(e=>console.error("Error loading images:",e));

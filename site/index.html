@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="A simple gift for the love of my life.">
+<title>Eu te amo</title>
+<link rel=icon href=/favicon.ico type=image/x-icon>
+<link rel=apple-touch-icon href=/apple-touch-icon.png sizes=180x180>
+<link rel=manifest href=site.webmanifest>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel=stylesheet>
+<link rel=stylesheet href=/style.css>
+</head>
+<body>
+<div class=center-content>
+<h1 class=title>Um simples presente</h1>
+<h2 class=subtitle>Para a dona do meu coração…</h2>
+</div>
+<a href=/site/grid>
+<div class=slideshow-container id=slideshow></div>
+</a>
+<div class=message-box>
+<h3 class=message>Você chegou como quem não queria nada, e se tornou uma das melhores surpresas da minha vida.</h3>
+<h3 class="message emphasis">Espero poder te fazer MUITO feliz por MUITO tempo ainda minha princesa.</h3>
+<h3 class=love>TE AMO DEMAIS<br>MINHA PRINCESA</h3>
+</div>
+<div class=audio-player>
+<div class=player-content>
+<div class=audio-controls>
+<div class=audio-title>Ainda Bem</div>
+<div class=audio-slider>
+<input type=range class=audio-progress value=0 max=100>
+</div>
+<div class=audio-buttons>
+<button class=play-pause><span class=play-icon>▶</span></button>
+<div class=audio-volume>
+<input type=range class=audio-volume-slider value=100 max=100>
+</div>
+</div>
+</div>
+</div>
+</div>
+<audio id=myAudio autoplay loop>
+<source src=/assets/songs/ainda_bem.mp3 type=audio/mp3>
+Your browser does not support the audio element.
+</audio>
+<div id=timer-container>
+<div id=timer-title class=timer-title>Começamos a namorar</div>
+<div id=timer class=timer onclick=cycleTimer()>
+<div class=unit-container><span id=days-number>0</span><span>Days</span></div>
+<div class=unit-container><span id=hours-number>0</span><span>Hours</span></div>
+<div class=unit-container><span id=minutes-number>0</span><span>Minutes</span></div>
+<div class=unit-container><span id=seconds-number>0</span><span>Seconds</span></div>
+</div>
+</div>
+<script src=/script.js></script>
+</body>
+</html>
