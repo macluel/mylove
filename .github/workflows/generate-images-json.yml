@@ -19,8 +19,8 @@ jobs:
 
       - name: Generate images.json
         run: |
-          # Get all image files in the folder, including HEIC
-          FILES=$(ls assets/images | grep -E "\.(jpg|jpeg|png|heic)$" || true)
+          # Get all image files in the folder, including HEIC (case-insensitive)
+          FILES=$(ls assets/images | grep -Ei "\.(jpg|jpeg|png|heic)$" || true)
 
           # Create the images.json file
           echo '{ "images": [' > assets/images/images.json
